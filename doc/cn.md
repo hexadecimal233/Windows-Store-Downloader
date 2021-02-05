@@ -1,4 +1,4 @@
-**[English Document](../README.MD)**
+**[English Document](../Readme.md)**
 
 
 ## 微软商店下载器
