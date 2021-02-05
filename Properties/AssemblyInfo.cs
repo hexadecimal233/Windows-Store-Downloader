@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // 有关程序集的一般信息由以下
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("Windows Store Downloader")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Microsoft Store Downloader")]
+[assembly: AssemblyDescription("Download Microsoft Store content")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Windows Store Downloader")]
-[assembly: AssemblyCopyright("Copyright ©  2021")]
+[assembly: AssemblyProduct("Microsoft Store Downloader")]
+[assembly: AssemblyCopyright("ThebestkillerTBK")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

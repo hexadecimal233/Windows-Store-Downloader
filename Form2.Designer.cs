@@ -4,14 +4,14 @@ namespace Windows_Store_Downloader
     partial class Form2
     {
         /// <summary>
-        /// 必需的设计器变量。
+        /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>
-        /// 清理所有正在使用的资源。
+        /// Clean up any resources being used.
         /// </summary>
-        /// <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -21,38 +21,42 @@ namespace Windows_Store_Downloader
             base.Dispose(disposing);
         }
 
-        #region Windows 窗体设计器生成的代码
+        #region Windows Form Designer generated code
 
         /// <summary>
-        /// 设计器支持所需的方法 - 不要修改
-        /// 使用代码编辑器修改此方法的内容。
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
-            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
+            this.dataMSStore = new System.Windows.Forms.WebBrowser();
+            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.SuspendLayout();
             // 
-            // webBrowser1
+            // dataMSStore
             // 
-            this.webBrowser1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.webBrowser1.Location = new System.Drawing.Point(0, 0);
-            this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
-            this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(1069, 546);
-            this.webBrowser1.TabIndex = 0;
+            this.dataMSStore.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataMSStore.Location = new System.Drawing.Point(0, 0);
+            this.dataMSStore.MinimumSize = new System.Drawing.Size(20, 20);
+            this.dataMSStore.Name = "dataMSStore";
+            this.dataMSStore.Size = new System.Drawing.Size(1256, 656);
+            this.dataMSStore.TabIndex = 0;
             // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 21F);
-            this.ClientSize = new System.Drawing.Size(1069, 546);
-            this.Controls.Add(this.webBrowser1);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(1256, 656);
+            this.Controls.Add(this.dataMSStore);
             this.Name = "Form2";
+            this.Text = "Form2";
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.WebBrowser webBrowser1;
+        private System.Windows.Forms.WebBrowser dataMSStore;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
     }
 }
