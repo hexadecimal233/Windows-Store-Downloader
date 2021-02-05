@@ -29,6 +29,7 @@ namespace Windows_Store_Downloader
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.downloadButton = new System.Windows.Forms.Button();
             this.routeText = new System.Windows.Forms.Label();
             this.routeBox = new System.Windows.Forms.ComboBox();
@@ -39,23 +40,26 @@ namespace Windows_Store_Downloader
             this.langText = new System.Windows.Forms.TextBox();
             this.langBox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // downloadButton
             // 
             this.downloadButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.downloadButton.Location = new System.Drawing.Point(355, 392);
+            this.downloadButton.Location = new System.Drawing.Point(367, 401);
             this.downloadButton.Name = "downloadButton";
             this.downloadButton.Size = new System.Drawing.Size(336, 101);
             this.downloadButton.TabIndex = 0;
             this.downloadButton.Text = "Download";
+            this.downloadButton.UseMnemonic = false;
             this.downloadButton.UseVisualStyleBackColor = true;
             this.downloadButton.Click += new System.EventHandler(this.downloadButton_Click);
             // 
             // routeText
             // 
             this.routeText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.routeText.Location = new System.Drawing.Point(819, 12);
+            this.routeText.Location = new System.Drawing.Point(801, 27);
             this.routeText.Name = "routeText";
             this.routeText.Size = new System.Drawing.Size(238, 67);
             this.routeText.TabIndex = 1;
@@ -64,13 +68,14 @@ namespace Windows_Store_Downloader
             // 
             // routeBox
             // 
+            this.routeBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.routeBox.FormattingEnabled = true;
             this.routeBox.Items.AddRange(new object[] {
             "Fast",
             "Slow",
             "RP",
             "Retail"});
-            this.routeBox.Location = new System.Drawing.Point(838, 92);
+            this.routeBox.Location = new System.Drawing.Point(807, 101);
             this.routeBox.Name = "routeBox";
             this.routeBox.Size = new System.Drawing.Size(219, 29);
             this.routeBox.TabIndex = 2;
@@ -78,7 +83,7 @@ namespace Windows_Store_Downloader
             // typeLinkText
             // 
             this.typeLinkText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.typeLinkText.Location = new System.Drawing.Point(6, 9);
+            this.typeLinkText.Location = new System.Drawing.Point(10, 28);
             this.typeLinkText.Name = "typeLinkText";
             this.typeLinkText.Size = new System.Drawing.Size(286, 70);
             this.typeLinkText.TabIndex = 3;
@@ -87,13 +92,14 @@ namespace Windows_Store_Downloader
             // 
             // typeBox
             // 
+            this.typeBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.typeBox.FormattingEnabled = true;
             this.typeBox.Items.AddRange(new object[] {
             "Url(Link)",
             "ProductID",
             "PackageFamilyName",
             "CategoryID"});
-            this.typeBox.Location = new System.Drawing.Point(32, 92);
+            this.typeBox.Location = new System.Drawing.Point(57, 101);
             this.typeBox.Name = "typeBox";
             this.typeBox.Size = new System.Drawing.Size(219, 29);
             this.typeBox.TabIndex = 4;
@@ -101,7 +107,7 @@ namespace Windows_Store_Downloader
             // attributeText
             // 
             this.attributeText.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.attributeText.Location = new System.Drawing.Point(59, 175);
+            this.attributeText.Location = new System.Drawing.Point(57, 172);
             this.attributeText.Name = "attributeText";
             this.attributeText.Size = new System.Drawing.Size(969, 31);
             this.attributeText.TabIndex = 5;
@@ -112,7 +118,7 @@ namespace Windows_Store_Downloader
             // langPackText
             // 
             this.langPackText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.langPackText.Location = new System.Drawing.Point(304, 12);
+            this.langPackText.Location = new System.Drawing.Point(302, 27);
             this.langPackText.Name = "langPackText";
             this.langPackText.Size = new System.Drawing.Size(477, 67);
             this.langPackText.TabIndex = 6;
@@ -121,7 +127,7 @@ namespace Windows_Store_Downloader
             // 
             // langText
             // 
-            this.langText.Location = new System.Drawing.Point(432, 92);
+            this.langText.Location = new System.Drawing.Point(431, 101);
             this.langText.Name = "langText";
             this.langText.Size = new System.Drawing.Size(219, 31);
             this.langText.TabIndex = 7;
@@ -129,6 +135,7 @@ namespace Windows_Store_Downloader
             // langBox
             // 
             this.langBox.Cursor = System.Windows.Forms.Cursors.Default;
+            this.langBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.langBox.FormattingEnabled = true;
             this.langBox.Items.AddRange(new object[] {
             "English",
@@ -149,24 +156,39 @@ namespace Windows_Store_Downloader
             this.label1.TabIndex = 9;
             this.label1.Text = "Language/语言";
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.langText);
+            this.groupBox1.Controls.Add(this.langPackText);
+            this.groupBox1.Controls.Add(this.attributeText);
+            this.groupBox1.Controls.Add(this.typeBox);
+            this.groupBox1.Controls.Add(this.typeLinkText);
+            this.groupBox1.Controls.Add(this.routeBox);
+            this.groupBox1.Controls.Add(this.routeText);
+            this.groupBox1.Location = new System.Drawing.Point(17, 12);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(1062, 269);
+            this.groupBox1.TabIndex = 10;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Download";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1069, 546);
+            this.ClientSize = new System.Drawing.Size(1109, 541);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.langBox);
-            this.Controls.Add(this.langText);
-            this.Controls.Add(this.langPackText);
-            this.Controls.Add(this.attributeText);
-            this.Controls.Add(this.typeBox);
-            this.Controls.Add(this.typeLinkText);
-            this.Controls.Add(this.routeBox);
-            this.Controls.Add(this.routeText);
             this.Controls.Add(this.downloadButton);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
+            this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "Microsoft Store Downloader";
+            this.Load += new System.EventHandler(this.Form1_Load);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -184,6 +206,7 @@ namespace Windows_Store_Downloader
         public System.Windows.Forms.TextBox langText;
         private System.Windows.Forms.Label label1;
         public System.Windows.Forms.ComboBox langBox;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }
 

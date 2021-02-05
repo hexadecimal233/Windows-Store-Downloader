@@ -29,34 +29,24 @@ namespace Windows_Store_Downloader
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataMSStore = new System.Windows.Forms.WebBrowser();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.SuspendLayout();
-            // 
-            // dataMSStore
-            // 
-            this.dataMSStore.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataMSStore.Location = new System.Drawing.Point(0, 0);
-            this.dataMSStore.MinimumSize = new System.Drawing.Size(20, 20);
-            this.dataMSStore.Name = "dataMSStore";
-            this.dataMSStore.Size = new System.Drawing.Size(1256, 656);
-            this.dataMSStore.TabIndex = 0;
             // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1256, 656);
-            this.Controls.Add(this.dataMSStore);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Form2";
+            this.ShowIcon = false;
             this.Text = "Form2";
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.WebBrowser dataMSStore;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
     }
 }
