@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace Windows_Store_Downloader
 {
@@ -16,43 +12,86 @@ namespace Windows_Store_Downloader
         {
             InitializeComponent();
         }
-
         
+        private bool textBoxHasText = false;
         Form2 Form2 = new Form2();
-        private void attributeInputReady(object sender, EventArgs e)
+        public static string postContent;
+        private void AttributeInputReady(object sender, EventArgs e)
         {
-            if (attributeText.Text == Language.lang_input)
+            HasText();
+            if (textBoxHasText == false)
             {
                 attributeText.Text = "";
                 attributeText.ForeColor = Color.Black;
             }
-        }
-
-        private void attributeInputDeselect(object sender, MouseEventArgs e)
-        {
-            if(attributeText.Text == "")
+            else
             {
-                attributeText.Text = setAttributeText();
+                attributeText.ForeColor = Color.Black;
+            }
+
+            
+        }
+        private void HasText()
+        {
+
+                if (attributeText.Text == "" || attributeText.Text == Language.lang_attributes[0] ||
+                attributeText.Text == Language.lang_input || attributeText.Text == Language.lang_attributes[1] ||
+                attributeText.Text == Language.lang_attributes[2] || attributeText.Text == Language.lang_attributes[3])
+                {
+                    textBoxHasText = false;
+                }
+                else
+                {
+                    textBoxHasText = true;
+                }
+            
+
+        }
+        private void AttributeInputDeselect(object sender, EventArgs e)
+        {
+            HasText();
+                if (textBoxHasText == false)
+            {
+                attributeText.Text = SetAttributeText();
                 attributeText.ForeColor = Color.Gray;
+                textBoxHasText = false;
+            }
+            else
+            {
+                textBoxHasText = true;
             }
         }
-
-        private string setAttributeText() {
-            return Language.lang_attributes[routeBox.SelectedIndex];
+        private string SetAttributeText() {
+            return Language.lang_attributes[typeBox.SelectedIndex];
         }
 
-        private void downloadButton_Click(object sender, EventArgs e)
+        private void DownloadButton_Click(object sender, EventArgs e)
         {
-            if(typeBox.SelectedIndex == -1 || routeBox.SelectedIndex == -1 || langText.Text == "" || attributeText.Text == "")
+            progressBar1.Value = 0;
+            if (typeBox.SelectedIndex == -1 || routeBox.SelectedIndex == -1 || langText.Text == "" || attributeText.Text == "")
             {
                 MessageBox.Show(Language.lang_baddown,Language.lang_baddowninfo,MessageBoxButtons.OK,MessageBoxIcon.Error);
             } else {
-                Form2.OpenBrowser();
+                postContent = "type=" + Http_Post.type[typeBox.SelectedIndex] + "&url=" + attributeText.Text + "&ring=" +
+          Http_Post.ring[routeBox.SelectedIndex] + "&lang=" + langText.Text;
+
+                Thread post = new Thread(Form2.Browse);
+                post.Start();
+                while (Form2.complete == false)
+                {
+                    if(progressBar1.Value <= 99)
+                    {
+                        Random random = new Random(new Guid().GetHashCode());
+                        Thread.Sleep(random.Next(67, 101));
+                        progressBar1.PerformStep();
+                    }
+                }
+                progressBar1.Value = 100;
             }
             
         }
 
-        private void changeLanguage(object sender, EventArgs e)
+        private void ChangeLanguage(object sender, EventArgs e)
         {
             if (langBox.Text == "English")
             {
@@ -95,6 +134,8 @@ namespace Windows_Store_Downloader
             downloadButton.Text = Language.lang_downbutton;
             this.Text = Language.lang_title;
             groupBox1.Text = Language.lang_downbutton;
+            attributeText.Text = Language.lang_input;
         }
+
     }
 }

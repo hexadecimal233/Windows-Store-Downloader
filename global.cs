@@ -10,12 +10,13 @@
             };
         public string lang_title = "Microsoft Store Downloader";
         public string lang_typelink = "Download link type";
-        public string lang_language = "Package Language(Example:zh-CN)";
+        public string lang_language = "Package Language(Example:en-US)";
         public string lang_route = "Download Route";
         public string lang_downbutton = "Download";
         public string lang_input = "Input here...";
         public string lang_baddowninfo = "Error";
         public string lang_baddown = "Your download info is incorrect";
         public string lang_down = "Download";
+        public string lang_prog = "Query progress";
     }
 }

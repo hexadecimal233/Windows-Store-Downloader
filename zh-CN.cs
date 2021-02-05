@@ -17,5 +17,6 @@
         public string lang_baddowninfo = "错误";
         public string lang_baddown = "你填写的参数不正确";
         public string lang_down = "下载";
+        public string lang_prog = "查询进度";
     }
 }

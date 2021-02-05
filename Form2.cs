@@ -1,32 +1,24 @@
-﻿using System;
-using System.Windows.Forms;
-
+﻿using System.Windows.Forms;
 
 namespace Windows_Store_Downloader
 {
     public partial class Form2 : Form
     {
-        private const string LINK_HTTP = "https://store.rg-adguard.net/api/GetFiles";
-
+       
         public Form2()
         {
             InitializeComponent();
         }
-
-        public void OpenBrowser()
+        public bool complete = false;
+        Http_Post Http_Post = new Http_Post();
+        public void Browse()
         {
-            try
-            {
-                new Form2().ShowDialog();
-                Form1 Form1 = new Form1();
-                //dataMSStore.Navigate(LINK_HTTP + "type=" + Form1.typeBox.Text + "&url=" + Form1.langText.Text + "&ring=" + Form1.routeBox.Text +
-                //    "&lang=" + Form1.langText.Text);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-
+            complete = false;
+            string content = Form1.postContent;
+            string result = Http_Post.StartPostData(content);
+            complete = true;
+            MessageBox.Show(result);
+            return;
         }
     }
 }

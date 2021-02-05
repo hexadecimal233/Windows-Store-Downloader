@@ -15,6 +15,7 @@ namespace Windows_Store_Downloader
         public static string lang_downbutton;
         public static string lang_input;
         public static string lang_down;
+        public static string lang_prog;
         public static void Chinese_Lang()
         {
             lang_attributes[0] = zh_CN.lang_attributes[0];
@@ -30,6 +31,7 @@ namespace Windows_Store_Downloader
             lang_baddowninfo = zh_CN.lang_baddowninfo;
             lang_input = zh_CN.lang_input;
             lang_down = zh_CN.lang_down;
+            lang_prog = zh_CN.lang_prog;
     }
         public static void English_Lang()
         {
@@ -46,6 +48,7 @@ namespace Windows_Store_Downloader
             lang_baddowninfo = global.lang_baddowninfo;
             lang_input = global.lang_input;
             lang_down = global.lang_down;
+            lang_prog = global.lang_prog;
         }
     }
 }
