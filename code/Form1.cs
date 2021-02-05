@@ -135,6 +135,7 @@ namespace Windows_Store_Downloader
             this.Text = Language.lang_title;
             groupBox1.Text = Language.lang_downbutton;
             attributeText.Text = Language.lang_input;
+            progressText.Text = Language.lang_prog;
         }
 
     }
