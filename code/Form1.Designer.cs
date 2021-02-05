@@ -105,6 +105,7 @@ namespace Windows_Store_Downloader
             this.typeBox.Name = "typeBox";
             this.typeBox.Size = new System.Drawing.Size(239, 29);
             this.typeBox.TabIndex = 4;
+            this.typeBox.SelectedIndexChanged += new System.EventHandler(this.RefreshText);
             // 
             // attributeText
             // 

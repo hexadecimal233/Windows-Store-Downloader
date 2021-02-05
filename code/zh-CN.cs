@@ -18,5 +18,7 @@
         public string lang_baddown = "你填写的参数不正确";
         public string lang_down = "下载";
         public string lang_prog = "查询进度";
+        public string lang_interr = "发生内部错误。";
+        public string lang_errhtm = "error-cn.html";
     }
 }

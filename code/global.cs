@@ -18,5 +18,7 @@
         public string lang_baddown = "Your download info is incorrect";
         public string lang_down = "Download";
         public string lang_prog = "Query progress";
+        public string lang_interr = "Internal Error Occurred.";
+        public string lang_errhtm = "error.html";
     }
 }

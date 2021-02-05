@@ -15,6 +15,7 @@ namespace Windows_Store_Downloader
         
         private bool textBoxHasText = false;
         Form2 Form2 = new Form2();
+        WriteToTemp WriteToTemp = new WriteToTemp();
         public static string postContent;
         private void AttributeInputReady(object sender, EventArgs e)
         {
@@ -67,6 +68,8 @@ namespace Windows_Store_Downloader
 
         private void DownloadButton_Click(object sender, EventArgs e)
         {
+            downloadButton.Enabled = false;
+            Form2.complete = false;
             progressBar1.Value = 0;
             if (typeBox.SelectedIndex == -1 || routeBox.SelectedIndex == -1 || langText.Text == "" || attributeText.Text == "")
             {
@@ -76,7 +79,8 @@ namespace Windows_Store_Downloader
           Http_Post.ring[routeBox.SelectedIndex] + "&lang=" + langText.Text;
 
                 Thread post = new Thread(Form2.Browse);
-                post.Start();
+                post.SetApartmentState(ApartmentState.STA);
+                post.Start();                
                 while (Form2.complete == false)
                 {
                     if(progressBar1.Value <= 99)
@@ -87,6 +91,7 @@ namespace Windows_Store_Downloader
                     }
                 }
                 progressBar1.Value = 100;
+                downloadButton.Enabled = true;
             }
             
         }
@@ -103,6 +108,7 @@ namespace Windows_Store_Downloader
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            WriteToTemp.ReadFrom();
             if (System.Threading.Thread.CurrentThread.CurrentCulture.Name == "zh-CN") {
                 Chinese_Lang();
                 langBox.SelectedIndex = 1;
@@ -138,5 +144,19 @@ namespace Windows_Store_Downloader
             progressText.Text = Language.lang_prog;
         }
 
+        private void RefreshText(object sender, EventArgs e)
+        {
+            HasText();
+            if (textBoxHasText == false)
+            {
+                attributeText.Text = SetAttributeText();
+                attributeText.ForeColor = Color.Gray;
+                textBoxHasText = false;
+            }
+            else
+            {
+                textBoxHasText = true;
+            }
+        }
     }
 }

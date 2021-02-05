@@ -1,4 +1,6 @@
 ﻿
+using System.Windows.Forms;
+
 namespace Windows_Store_Downloader
 {
     class Language
@@ -16,6 +18,8 @@ namespace Windows_Store_Downloader
         public static string lang_input;
         public static string lang_down;
         public static string lang_prog;
+        public static string lang_interr;
+        public static string lang_errhtm;
         public static void Chinese_Lang()
         {
             lang_attributes[0] = zh_CN.lang_attributes[0];
@@ -32,6 +36,8 @@ namespace Windows_Store_Downloader
             lang_input = zh_CN.lang_input;
             lang_down = zh_CN.lang_down;
             lang_prog = zh_CN.lang_prog;
+            lang_interr = zh_CN.lang_interr;
+            lang_errhtm = zh_CN.lang_errhtm;
     }
         public static void English_Lang()
         {
@@ -49,6 +55,11 @@ namespace Windows_Store_Downloader
             lang_input = global.lang_input;
             lang_down = global.lang_down;
             lang_prog = global.lang_prog;
+            lang_interr = global.lang_interr;
+            lang_errhtm = global.lang_errhtm;
+        }
+        public static void InternalErrMsgBox(){
+            MessageBox.Show(Language.lang_interr, Language.lang_interr, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 }

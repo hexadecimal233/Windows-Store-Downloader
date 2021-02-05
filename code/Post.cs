@@ -2,6 +2,7 @@
 using System.IO;
 using System.Net;
 using System.Text;
+using System;
 namespace Windows_Store_Downloader
 {
     class Http_Post
@@ -12,7 +13,15 @@ namespace Windows_Store_Downloader
         public string StartPostData(string content)
         {
             Debug.WriteLine("<POST> Post Link: " + LINK_HTTP + " ; Post Data: " + content + "<POST>");
-            return Post(LINK_HTTP,content);
+            try
+            {
+                return Post(LINK_HTTP, content);
+            }
+            catch (Exception)
+            {
+                Language.InternalErrMsgBox();
+                return "";
+            }
         }
         private static string Post(string url, string content)
         {
