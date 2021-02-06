@@ -11,6 +11,8 @@ You can download paid, restricted and free Apps.
 
 You should download packages of your system and install them all.
 
+Some codes are from the Internet.
+
 Example:![image](doc/example.gif)
 
 ### Features

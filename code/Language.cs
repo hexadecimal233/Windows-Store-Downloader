@@ -5,8 +5,10 @@ namespace Windows_Store_Downloader
 {
     class Language
     {
+        //语言系统
         static zh_CN zh_CN = new zh_CN();
         static global global = new global();
+
         public static string[] lang_attributes = new string[4];
         public static string lang_baddown;
         public static string lang_baddowninfo;        
@@ -20,6 +22,7 @@ namespace Windows_Store_Downloader
         public static string lang_prog;
         public static string lang_interr;
         public static string lang_errhtm;
+        public static string lang_neterr;
         public static void Chinese_Lang()
         {
             lang_attributes[0] = zh_CN.lang_attributes[0];
@@ -38,6 +41,7 @@ namespace Windows_Store_Downloader
             lang_prog = zh_CN.lang_prog;
             lang_interr = zh_CN.lang_interr;
             lang_errhtm = zh_CN.lang_errhtm;
+            lang_neterr = zh_CN.lang_neterr;
     }
         public static void English_Lang()
         {
@@ -57,6 +61,7 @@ namespace Windows_Store_Downloader
             lang_prog = global.lang_prog;
             lang_interr = global.lang_interr;
             lang_errhtm = global.lang_errhtm;
+            lang_neterr = global.lang_neterr;
         }
         public static void InternalErrMsgBox(System.Exception ex){
             MessageBox.Show(Language.lang_interr, Language.lang_interr, MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -65,6 +70,6 @@ namespace Windows_Store_Downloader
                 file.WriteLine(ex);
 
             }
-        }
+        }//内部错误信息框
     }
 }

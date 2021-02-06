@@ -21,5 +21,6 @@
         public string lang_interr = "Internal Error Occurred.\nView " + WriteToTemp.tmpPath +
             "\\..\\exception.log" + "for technical information.";
         public string lang_errhtm = "error.html";
+        public string lang_neterr = "Network error.";
     }
 }

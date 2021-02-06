@@ -35,7 +35,6 @@ namespace Windows_Store_Downloader
             // 
             // webBrowser1
             // 
-            this.webBrowser1.AllowWebBrowserDrop = false;
             this.webBrowser1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.webBrowser1.IsWebBrowserContextMenuEnabled = false;
             this.webBrowser1.Location = new System.Drawing.Point(0, 0);
@@ -45,6 +44,7 @@ namespace Windows_Store_Downloader
             this.webBrowser1.ScrollBarsEnabled = false;
             this.webBrowser1.Size = new System.Drawing.Size(1256, 750);
             this.webBrowser1.TabIndex = 0;
+            this.webBrowser1.Url = new System.Uri("", System.UriKind.Relative);
             // 
             // Form2
             // 
@@ -59,12 +59,13 @@ namespace Windows_Store_Downloader
             this.Name = "Form2";
             this.ShowIcon = false;
             this.Text = "Form2";
+            this.Load += new System.EventHandler(this.Form2_Load);
             this.ResumeLayout(false);
 
         }
 
         #endregion
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
-        private System.Windows.Forms.WebBrowser webBrowser1;
+        public System.Windows.Forms.WebBrowser webBrowser1;
     }
 }

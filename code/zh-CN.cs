@@ -21,5 +21,6 @@
         public string lang_interr = "发生内部错误。\n查看" + WriteToTemp.tmpPath +
             "\\..\\exception.log" + "以获得技术信息。";
         public string lang_errhtm = "error-cn.html";
+        public string lang_neterr = "网络错误.";
     }
 }

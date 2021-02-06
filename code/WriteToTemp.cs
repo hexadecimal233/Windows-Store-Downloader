@@ -1,6 +1,8 @@
 ﻿using System;
 using System.IO;
 using System.Windows.Forms;
+using System.IO.Compression;
+using System.Text;
 
 namespace Windows_Store_Downloader
 {
@@ -46,14 +48,23 @@ namespace Windows_Store_Downloader
                 "\\Local\\Temp\\MSStoreDownloadTemp\\data" ;
         public void ReadFrom()
         {
+            try {
+                if (File.Exists(@tmpPath + "\\..\\res.zip") == false)
+                {
+                    File.WriteAllBytes(@tmpPath + "\\..\\res.zip", Properties.Resources.res);
+                }
+            } catch (Exception) { }
             try
             {
+                if (File.Exists(@tmpPath + "\\error.html") == false)
+                {
+                    ZipFile.ExtractToDirectory(@tmpPath + "\\..\\res.zip", @tmpPath);
+                }
                 
-                System.IO.Compression.ZipFile.ExtractToDirectory(@Directory.GetCurrentDirectory() + "\\res.zip", @tmpPath);
-            } catch(System.IO.FileNotFoundException ex)
+            } catch(FileNotFoundException ex)
             {
                 MessageBox.Show(ex.Message, "!");
-                System.Environment.Exit(0);
+                Environment.Exit(0);
             }
             catch (IOException)
             {
@@ -63,9 +74,42 @@ namespace Windows_Store_Downloader
             {
                 Language.InternalErrMsgBox(ex);
             }
+            
 
         }
+        public void PostLog()
+        {
+            try
+            {
+            File.Delete(WriteToTemp.tmpPath + "\\..\\post.log"); 
+            } 
+            catch (Exception) { }
+            
+           
 
-       
+                //压缩
+                var str = Form2.result;
+                var memoryStream = new MemoryStream();
+                var gZipStream = new GZipStream(memoryStream, CompressionMode.Compress);
+                var byteList = Encoding.UTF8.GetBytes(str);
+                gZipStream.Write(byteList, 0, byteList.Length);
+                gZipStream.Close();
+                var output = memoryStream.ToArray();
+                File.WriteAllBytes(tmpPath + "\\..\\post.log." + GetTimeStamp().ToString() + ".gz", output);
+
+
+            
+        }//记录日志
+        /// <summary>
+        /// 获取时间戳
+        /// </summary>
+        /// <returns></returns>
+        public static string GetTimeStamp()
+        {
+            TimeSpan ts = DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, 0);
+            return Convert.ToInt64(ts.TotalMilliseconds).ToString();
+        }// 获取时间戳
+        
+
     }
 }

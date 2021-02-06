@@ -5,6 +5,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace Windows_Store_Downloader
@@ -16,47 +17,49 @@ namespace Windows_Store_Downloader
         {
             InitializeComponent();
         }
+        public static string result; //post返回的表格
+        public static int returnid;
+        /// <summary>
+        /// Returnid:
+        /// -1：意外
+        /// 1：完成
+        /// 2：空响应
+        /// </summary>
         public bool complete = false;
         Http_Post Http_Post = new Http_Post();
         public void Browse()
-        {            
+        {
+            WriteToTemp WriteToTemp = new WriteToTemp();
             complete = false;
+            result = "";
             string content = Form1.postContent;
-            string result = Http_Post.StartPostData(content);
-            using (System.IO.StreamWriter file = new System.IO.StreamWriter(@WriteToTemp.tmpPath + "\\..\\post.log", true))
+            result = Http_Post.StartPostData(content); //POST
+            if (result == "")  
             {
-                file.WriteLine(result);
-
-            }
+                returnid = -1;
+                complete = true;
+                return;
+            }//意外-1
+            Thread postlog = new Thread(WriteToTemp.PostLog);
+            postlog.Start();//记录日志
             if (result.IndexOf("The server returned an empty list") != -1)
             {
                 complete = true;
-                
-                try
-                {
-                    InitBrowser();
-                    //webBrowser1.Navigate("\""+WriteToTemp.tmpPath + @"\" + Language.lang_errhtm+"\"");
-                    webBrowser1.Navigate(new Uri("file:///C:/Users/User-WIN/AppData/Roaming/Local/Temp/MSStoreDownloadTemp/xPfeOin6F7/error-cn.html"));
-                }
-                catch (System.Runtime.InteropServices.InvalidComObjectException) { }
-                catch (Exception ex)
-                {
-                    Language.InternalErrMsgBox(ex);
-                }
-
-
-
+                returnid = 2;
                 return;
-            }
-            if (result == "") { complete = true; return; }
-            string result2 = RemoveUselessContent(result);
-            if (result2 == "") { complete = true; return; }
+            }//空响应0
+            string result2 = RemoveUselessContent(result);//格式化
+            if (result2 == "") {
+                returnid = -1;
+                complete = true;
+                return;
+            } // 处理错误-1
+            returnid = 1; //成功
             complete = true;
-            MessageBox.Show(result2);
-            
+            Debug.WriteLine(result2);
             return;
         }
-        private string RemoveUselessContent(string old)
+        private string RemoveUselessContent(string old)//格式化
         {
             try
             {
@@ -72,15 +75,29 @@ namespace Windows_Store_Downloader
             }
             
         }
-        private void InitBrowser()
+        private string Mdui(string old)//加入Mdui格式
         {
-            webBrowser1.ScriptErrorsSuppressed = true; //禁用错误脚本提示  
-            webBrowser1.IsWebBrowserContextMenuEnabled = false; // 禁用右键菜单  
-            webBrowser1.WebBrowserShortcutsEnabled = false; //禁用快捷键  
-            webBrowser1.AllowWebBrowserDrop = false; // 禁止文件拖动 
-            
 
+            return old;
+        }
+         private void Form2_Load(object sender, EventArgs e)
+        {
+            var urlString = new Uri(WriteToTemp.tmpPath + @"\" + Language.lang_errhtm);
+            Debug.WriteLine(urlString);
+            if (System.Diagnostics.Debugger.IsAttached == true)
+            {
+                webBrowser1.AllowWebBrowserDrop = true;
+            }
 
+            webBrowser1.Navigate(urlString);
+            webBrowser1.DocumentTitleChanged += DocTitleClose;
+        }
+        private void DocTitleClose(object sender, EventArgs e)
+        {
+            if (webBrowser1.DocumentTitle == "IAMOKAY")
+            {
+                Close();
+            }
         }
     }
     

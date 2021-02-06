@@ -44,6 +44,8 @@ namespace Windows_Store_Downloader
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.progressText = new System.Windows.Forms.Label();
+            this.debugWebBrowser = new System.Windows.Forms.Button();
+            this.debugWebsite = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -155,6 +157,7 @@ namespace Windows_Store_Downloader
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.label1.Location = new System.Drawing.Point(12, 525);
             this.label1.Name = "label1";
@@ -164,6 +167,7 @@ namespace Windows_Store_Downloader
             // 
             // groupBox1
             // 
+            this.groupBox1.BackColor = System.Drawing.Color.Transparent;
             this.groupBox1.Controls.Add(this.langText);
             this.groupBox1.Controls.Add(this.langPackText);
             this.groupBox1.Controls.Add(this.attributeText);
@@ -180,6 +184,7 @@ namespace Windows_Store_Downloader
             // 
             // pictureBox1
             // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.BackgroundImage = global::Windows_Store_Downloader.Properties.Resources.store;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBox1.Location = new System.Drawing.Point(775, 396);
@@ -198,6 +203,7 @@ namespace Windows_Store_Downloader
             // 
             // progressText
             // 
+            this.progressText.BackColor = System.Drawing.Color.Transparent;
             this.progressText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.progressText.Location = new System.Drawing.Point(11, 329);
             this.progressText.Name = "progressText";
@@ -205,11 +211,31 @@ namespace Windows_Store_Downloader
             this.progressText.TabIndex = 12;
             this.progressText.Text = "Query Progress";
             // 
+            // debugWebBrowser
+            // 
+            this.debugWebBrowser.Location = new System.Drawing.Point(17, 406);
+            this.debugWebBrowser.Name = "debugWebBrowser";
+            this.debugWebBrowser.Size = new System.Drawing.Size(171, 90);
+            this.debugWebBrowser.TabIndex = 13;
+            this.debugWebBrowser.Text = "WebBrowser";
+            this.debugWebBrowser.UseVisualStyleBackColor = true;
+            this.debugWebBrowser.Click += new System.EventHandler(this.debugWebBrowser_Click);
+            // 
+            // debugWebsite
+            // 
+            this.debugWebsite.Location = new System.Drawing.Point(223, 407);
+            this.debugWebsite.Name = "debugWebsite";
+            this.debugWebsite.Size = new System.Drawing.Size(532, 29);
+            this.debugWebsite.TabIndex = 14;
+            this.debugWebsite.Text = "https://www.example.com";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1109, 618);
+            this.ClientSize = new System.Drawing.Size(1109, 749);
+            this.Controls.Add(this.debugWebsite);
+            this.Controls.Add(this.debugWebBrowser);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.progressText);
             this.Controls.Add(this.progressBar1);
@@ -227,6 +253,7 @@ namespace Windows_Store_Downloader
             this.Text = "Microsoft Store Downloader";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -251,6 +278,8 @@ namespace Windows_Store_Downloader
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Label progressText;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button debugWebBrowser;
+        private System.Windows.Forms.TextBox debugWebsite;
     }
 }
 

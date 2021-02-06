@@ -7,9 +7,11 @@ namespace Windows_Store_Downloader
 {
     class Http_Post
     {
+        //参数转换
         public static string[] ring = new string[] { "WIF", "WIS", "RP", "Retail" };
         public static string[] type = new string[] { "url", "ProductId", "PackageFamilyName", "CategoryId" };
-        private const string LINK_HTTP = "https://store.rg-adguard.net/api/GetFiles";
+        private const string LINK_HTTP = "https://store.rg-adguard.net/api/GetFiles";//链接
+
         public string StartPostData(string content)
         {
             Debug.WriteLine("<POST> Post Link: " + LINK_HTTP + " ; Post Data: " + content + "<POST>");
@@ -27,7 +29,7 @@ namespace Windows_Store_Downloader
                 Language.InternalErrMsgBox(ex);
                 return "";
             }
-        }
+        }//开始Post
         private static string Post(string url, string content)
         {
             string result = "";
@@ -53,7 +55,7 @@ namespace Windows_Store_Downloader
                 result = reader.ReadToEnd();
             }
             return result;
-        }
+        }//POST
     }
 
 }

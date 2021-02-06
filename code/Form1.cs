@@ -1,18 +1,21 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Drawing;
-using System.Windows.Forms;
-using System.Threading;
 using System.Drawing.Drawing2D;
 using System.Runtime.InteropServices;
+using System.Threading;
+using System.Windows.Forms;
 
 namespace Windows_Store_Downloader
 {
     public partial class Form1 : Form
     {
 
+
         public Form1()
         {
             InitializeComponent();
+            
         }
         
         private bool textBoxHasText = false;
@@ -68,6 +71,7 @@ namespace Windows_Store_Downloader
             return Language.lang_attributes[typeBox.SelectedIndex];
         }
 
+        
         private void DownloadButton_Click(object sender, EventArgs e)
         {
             downloadButton.Enabled = false;
@@ -81,8 +85,8 @@ namespace Windows_Store_Downloader
             {
                 if (langText.Text == "")
                 {
-                    langText.Text = System.Threading.Thread.CurrentThread.CurrentCulture.Name; 
-                }
+                    langText.Text = Thread.CurrentThread.CurrentCulture.Name; 
+                }//提交语言
                 postContent = "type=" + Http_Post.type[typeBox.SelectedIndex] + "&url=" + attributeText.Text + "&ring=" +
           Http_Post.ring[routeBox.SelectedIndex] + "&lang=" + langText.Text;
 
@@ -97,15 +101,36 @@ namespace Windows_Store_Downloader
                         Thread.Sleep(random.Next(67, 101));
                         progressBar1.PerformStep();
                     }
-                }
+                }//伪装进度条
                 progressBar1.Value = 100;
                 downloadButton.Enabled = true;
+                if (Form2.returnid == -1)
+                {
+                    MessageBox.Show(Language.lang_interr, Language.lang_interr, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }//意外
                 new Form2().ShowDialog();
+                if (Form2.returnid == 1)
+                {
+                    try
+                    {
+
+                       
+                        
+                        
+                    }
+                    catch (InvalidComObjectException) { }
+                    catch (Exception ex)
+                    {
+                        Language.InternalErrMsgBox(ex);
+                    }
+                }
+
             }
             
         }
 
-        private void ChangeLanguage(object sender, EventArgs e)
+        private void ChangeLanguage(object sender, EventArgs e)//更改语言
         {
             if (langBox.Text == "English")
             {
@@ -117,19 +142,9 @@ namespace Windows_Store_Downloader
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
-
-            User32.AnimateWindow(this.Handle, 1000, User32.AW_BLEND | User32.AW_ACTIVE | User32.AW_VER_NEGATIVE);
-
-            Bitmap a = Properties.Resources.store;
-            a.MakeTransparent(Color.FromArgb(0, 255, 0));
-            pictureBox1.BackgroundImage = a;
-            if (System.Diagnostics.Debugger.IsAttached != true)
-            {
-                langText.Visible = false;
-                langPackText.Visible = false;
-            }
             
+
+            RefreshForm();
             WriteToTemp.ReadFrom();
             if (System.Threading.Thread.CurrentThread.CurrentCulture.Name == "zh-CN") {
                 Chinese_Lang();
@@ -138,12 +153,13 @@ namespace Windows_Store_Downloader
                 English_Lang();
                 langBox.SelectedIndex = 0;
             }
-            typeBox.SelectedIndex = 0;
-            routeBox.SelectedIndex = 2;
+
+            User32.AnimateWindow(this.Handle, 200, User32.AW_BLEND | User32.AW_ACTIVE | User32.AW_VER_NEGATIVE);
+            RefreshForm();
+            this.Opacity = 0.9;
+            
 
         }
-
-
 
         private void Chinese_Lang()
         {
@@ -164,9 +180,9 @@ namespace Windows_Store_Downloader
             groupBox1.Text = Language.lang_downbutton;
             attributeText.Text = Language.lang_input;
             progressText.Text = Language.lang_prog;
-        }
+        }//设置语言文本
 
-        private void RefreshText(object sender, EventArgs e)
+        private void RefreshText(object sender, EventArgs e)//刷新文本
         {
             HasText();
             if (textBoxHasText == false)
@@ -181,10 +197,63 @@ namespace Windows_Store_Downloader
             }
         }
 
-        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)//淡出
         {
-            User32.AnimateWindow(this.Handle, 1000, User32.AW_BLEND | User32.AW_HIDE);
+            this.Opacity = 1;
+            User32.AnimateWindow(this.Handle, 300, User32.AW_BLEND | User32.AW_HIDE);
         }
+        private void RefreshForm()//初始化窗口
+        {
+            Bitmap a = Properties.Resources.store;
+            a.MakeTransparent(Color.FromArgb(0, 255, 0));//透明图片
+            pictureBox1.BackgroundImage = a;
+            if (System.Diagnostics.Debugger.IsAttached != true)
+            {
+                langText.Visible = false;
+                langPackText.Visible = false;
+                debugWebsite.Visible = false;
+                debugWebBrowser.Visible = false;
+            }//调试内容
+            typeBox.SelectedIndex = 0;
+            routeBox.SelectedIndex = 2;
+            //初始化选择框
+
+            attributeText.Text = SetAttributeText();
+            attributeText.ForeColor = Color.Gray;
+            textBoxHasText = false;
+            //初始化文字
+          
+        }
+
+        
+        private void Form1_Paint(object sender, PaintEventArgs e)
+        {
+            
+                
+
+                Graphics g = e.Graphics;   //实例化Graphics 对象g
+                Color FColor = Color.FromArgb(0xE8, 0xF1, 0xE7); //颜色1
+                Color TColor = Color.FromArgb(0xCA, 0xC7, 0xC7);  //颜色2
+                Brush b = new LinearGradientBrush(this.ClientRectangle, FColor, TColor, LinearGradientMode.BackwardDiagonal);  //实例化刷子，第一个参数指示上色区域，第二个和第三个参数分别渐变颜色的开始和结束，第四个参数表示颜色的方向。
+                g.FillRectangle(b, this.ClientRectangle);  //进行上色 
+
+
+
+
+        }
+
+        private void debugWebBrowser_Click(object sender, EventArgs e)
+        {
+            new Form2().Show();
+            //Form2.webBrowser1.Navigate(debugWebsite.Text);
+            
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Debug.WriteLine(Form2.webBrowser1.Url);
+        }
+
     }
     class User32
     {
@@ -208,5 +277,6 @@ namespace Windows_Store_Downloader
         public const int AW_ACTIVE = 0x20000;//激活窗口，在使用了AW_HIDE标志后不要使用这个标志
         public const int AW_SLIDE = 0x40000;//使用滑动类型动画效果，默认为滚动动画类型，当使用AW_CENTER标志时，这个标志就被忽略
         public const int AW_BLEND = 0x80000;//使用淡入淡出效果
-    }
+    }//淡入淡出
+    
 }
