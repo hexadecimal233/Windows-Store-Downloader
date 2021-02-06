@@ -36,7 +36,7 @@ namespace Windows_Store_Downloader
             }
 
             
-        }
+        }//灰色文本
         private void HasText()
         {
 
@@ -52,7 +52,7 @@ namespace Windows_Store_Downloader
                 }
             
 
-        }
+        }//编辑框是否有文字
         private void AttributeInputDeselect(object sender, EventArgs e)
         {
             HasText();
@@ -66,33 +66,34 @@ namespace Windows_Store_Downloader
             {
                 textBoxHasText = true;
             }
-        }
+        }//灰色文本
         private string SetAttributeText() {
             return Language.lang_attributes[typeBox.SelectedIndex];
-        }
+        }//获取当前项的本地化文本
 
         
         private void DownloadButton_Click(object sender, EventArgs e)
         {
-            downloadButton.Enabled = false;
+            downloadButton.Enabled = false;//禁止重复点击
             Form2.complete = false;
             progressBar1.Value = 0;
             if (typeBox.SelectedIndex == -1 || routeBox.SelectedIndex == -1 || attributeText.Text == "")
             {
                 MessageBox.Show(Language.lang_baddown,Language.lang_baddowninfo,MessageBoxButtons.OK,MessageBoxIcon.Error);
-            }
-            else
-            {
+                return;
+            }//参数完整
+           
+            
                 if (langText.Text == "")
                 {
                     langText.Text = Thread.CurrentThread.CurrentCulture.Name; 
                 }//提交语言
                 postContent = "type=" + Http_Post.type[typeBox.SelectedIndex] + "&url=" + attributeText.Text + "&ring=" +
-          Http_Post.ring[routeBox.SelectedIndex] + "&lang=" + langText.Text;
+                    Http_Post.ring[routeBox.SelectedIndex] + "&lang=" + langText.Text;
 
                 Thread post = new Thread(Form2.Browse);
                 post.SetApartmentState(ApartmentState.STA);
-                post.Start();                
+                post.Start();  //POST线程
                 while (Form2.complete == false)
                 {
                     if(progressBar1.Value <= 99)
@@ -109,26 +110,21 @@ namespace Windows_Store_Downloader
                     MessageBox.Show(Language.lang_interr, Language.lang_interr, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }//意外
-                new Form2().ShowDialog();
-                if (Form2.returnid == 1)
+                
+                if (Form2.returnid == 1)//浏览
                 {
                     try
                     {
-
-                       
-                        
-                        
-                    }
-                    catch (InvalidComObjectException) { }
-                    catch (Exception ex)
+                        new Form2().ShowDialog();
+                    } catch (Exception ex)
                     {
                         Language.InternalErrMsgBox(ex);
                     }
                 }
 
-            }
             
-        }
+            
+        }//下载&浏览
 
         private void ChangeLanguage(object sender, EventArgs e)//更改语言
         {
@@ -156,7 +152,7 @@ namespace Windows_Store_Downloader
 
             User32.AnimateWindow(this.Handle, 200, User32.AW_BLEND | User32.AW_ACTIVE | User32.AW_VER_NEGATIVE);
             RefreshForm();
-            this.Opacity = 0.9;
+            this.Opacity = 0.95;
             
 
         }

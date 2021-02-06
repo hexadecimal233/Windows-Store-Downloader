@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
@@ -29,7 +30,18 @@ namespace Windows_Store_Downloader
         Http_Post Http_Post = new Http_Post();
         public void Browse()
         {
+            zh_CN zh_CN = new zh_CN();
+            global global = new global();
             WriteToTemp WriteToTemp = new WriteToTemp();
+            if (File.Exists(WriteToTemp.tmpPath + @"\" + zh_CN.lang_tablehtm))
+            {
+                File.Delete(WriteToTemp.tmpPath + @"\" + zh_CN.lang_tablehtm);
+            }
+            else if (File.Exists(WriteToTemp.tmpPath + @"\" + global.lang_tablehtm))
+            {
+                File.Delete(WriteToTemp.tmpPath + @"\" + global.lang_tablehtm);
+            }//去除文件缓存
+
             complete = false;
             result = "";
             string content = Form1.postContent;
@@ -54,11 +66,22 @@ namespace Windows_Store_Downloader
                 complete = true;
                 return;
             } // 处理错误-1
+            string result3 = Mdui(result2);
+            Debug.WriteLine(result3);
+            string result4;
+            if(Language.langUsing == "global")//language
+            {
+                result4 = Properties.Resources.table_1 + "\n" + result3 + "\n" + Properties.Resources.table_2;
+            } else {
+                result4 = Properties.Resources.table_1_cn + "\n" + result3 + "\n" + Properties.Resources.table_2_cn;
+            } 
+            
+            
+            File.WriteAllText(WriteToTemp.tmpPath + @"\" + Language.lang_tablehtm,result4);//写出合并后的文本
             returnid = 1; //成功
-            complete = true;
-            Debug.WriteLine(result2);
+            complete = true;            
             return;
-        }
+        }//POST和格式化等
         private string RemoveUselessContent(string old)//格式化
         {
             try
@@ -77,12 +100,20 @@ namespace Windows_Store_Downloader
         }
         private string Mdui(string old)//加入Mdui格式
         {
-
-            return old;
+            string new1;
+            new1 = old.Replace("class=\"tftable\" border=\"1\" align=\"center\"",
+                "class=\"mdui-table\" style=\"margin-left: 20px;margin-right: 20px;margin-top: 20px;\"")
+                .Replace("style=\"width:180px;\"", "")
+                .Replace("style=\"width:300px;\"", "")
+                .Replace("style=\"width:60px;\"", "")
+                .Replace("style=\"background-color:rgba(255, 255, 255, 0.8)\"", "")
+                .Replace("style=\"background-color:rgba(188, 235, 240, 0.8)\"", "class=\"mdui-color-blue-100\"");
+            return new1;
         }
          private void Form2_Load(object sender, EventArgs e)
         {
-            var urlString = new Uri(WriteToTemp.tmpPath + @"\" + Language.lang_errhtm);
+            //打开网页
+            var urlString = new Uri(WriteToTemp.tmpPath + @"\" + Language.lang_tablehtm);
             Debug.WriteLine(urlString);
             if (System.Diagnostics.Debugger.IsAttached == true)
             {
@@ -90,6 +121,7 @@ namespace Windows_Store_Downloader
             }
 
             webBrowser1.Navigate(urlString);
+            
             webBrowser1.DocumentTitleChanged += DocTitleClose;
         }
         private void DocTitleClose(object sender, EventArgs e)

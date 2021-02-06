@@ -76,7 +76,7 @@ namespace Windows_Store_Downloader
             }
             
 
-        }
+        }//读出res.zip
         public void PostLog()
         {
             try

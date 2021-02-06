@@ -22,5 +22,6 @@
             "\\..\\exception.log" + "for technical information.";
         public string lang_errhtm = "error.html";
         public string lang_neterr = "Network error.";
+        public string lang_tablehtm = "table.html";
     }
 }

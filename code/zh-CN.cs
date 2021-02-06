@@ -22,5 +22,6 @@
             "\\..\\exception.log" + "以获得技术信息。";
         public string lang_errhtm = "error-cn.html";
         public string lang_neterr = "网络错误.";
+        public string lang_tablehtm = "table-cn.html";
     }
 }

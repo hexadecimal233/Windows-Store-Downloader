@@ -23,6 +23,8 @@ namespace Windows_Store_Downloader
         public static string lang_interr;
         public static string lang_errhtm;
         public static string lang_neterr;
+        public static string lang_tablehtm;
+        public static string langUsing;
         public static void Chinese_Lang()
         {
             lang_attributes[0] = zh_CN.lang_attributes[0];
@@ -42,7 +44,9 @@ namespace Windows_Store_Downloader
             lang_interr = zh_CN.lang_interr;
             lang_errhtm = zh_CN.lang_errhtm;
             lang_neterr = zh_CN.lang_neterr;
-    }
+            lang_tablehtm = zh_CN.lang_tablehtm;
+            langUsing = "zh-CN";
+        }
         public static void English_Lang()
         {
             lang_attributes[0] = global.lang_attributes[0];
@@ -62,8 +66,11 @@ namespace Windows_Store_Downloader
             lang_interr = global.lang_interr;
             lang_errhtm = global.lang_errhtm;
             lang_neterr = global.lang_neterr;
+            lang_tablehtm = global.lang_tablehtm;
+            langUsing = "global";
         }
-        public static void InternalErrMsgBox(System.Exception ex){
+        public static void InternalErrMsgBox(System.Exception ex)
+        {
             MessageBox.Show(Language.lang_interr, Language.lang_interr, MessageBoxButtons.OK, MessageBoxIcon.Error);
             using (System.IO.StreamWriter file = new System.IO.StreamWriter(@WriteToTemp.tmpPath + "\\..\\exception.log", true))
             {

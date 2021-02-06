@@ -79,5 +79,87 @@ namespace Windows_Store_Downloader.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   查找类似 &lt;!doctype html&gt;
+        ///&lt;html lang=&quot;zh-cmn-Hans&quot;&gt;
+        ///  &lt;head&gt;
+        ///    &lt;meta charset=&quot;utf-8&quot;&gt;
+        ///    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no&quot;/&gt;
+        ///    &lt;meta name=&quot;renderer&quot; content=&quot;webkit&quot;/&gt;
+        ///    &lt;meta name=&quot;force-rendering&quot; content=&quot;webkit&quot;/&gt;
+        ///    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge,chrome=1&quot;/&gt;
+        ///    &lt;!-- MDUI CSS --&gt;
+        ///    &lt;link
+        ///      rel=&quot;stylesheet&quot;
+        ///      href=&quot;https://cdn.jsdelivr.net/npm/mdui@1.0.1/dist/css/mdui.min.css&quot;
+        ///      integrity=&quot;s [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        /// </summary>
+        internal static string table_1 {
+            get {
+                return ResourceManager.GetString("table_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 &lt;!doctype html&gt;
+        ///&lt;html lang=&quot;zh-cmn-Hans&quot;&gt;
+        ///  &lt;head&gt;
+        ///    &lt;meta charset=&quot;utf-8&quot;&gt;
+        ///    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no&quot;/&gt;
+        ///    &lt;meta name=&quot;renderer&quot; content=&quot;webkit&quot;/&gt;
+        ///    &lt;meta name=&quot;force-rendering&quot; content=&quot;webkit&quot;/&gt;
+        ///    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge,chrome=1&quot;/&gt;
+        ///    &lt;!-- MDUI CSS --&gt;
+        ///    &lt;link
+        ///      rel=&quot;stylesheet&quot;
+        ///      href=&quot;https://cdn.jsdelivr.net/npm/mdui@1.0.1/dist/css/mdui.min.css&quot;
+        ///      integrity=&quot;s [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        /// </summary>
+        internal static string table_1_cn {
+            get {
+                return ResourceManager.GetString("table_1_cn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似           &lt;!-- END CHANGE --&gt;
+        ///      &lt;/div&gt;
+        ///      
+        ///      &lt;button class=&quot;mdui-btn mdui-btn-raised mdui-ripple mdui-color-indigo mdui-valign mdui-center&quot;
+        ///        onClick=&quot;window.location.replace(&apos;empty.html&apos;);&quot; style=&quot;margin-top: 20px;&quot;&gt;Okay
+        ///        &lt;i class=&quot;mdui-icon material-icons&quot;&gt;
+        ///        check&lt;/i&gt;&lt;/button&gt;
+        ///    &lt;/div&gt;
+        ///    &lt;!-- MDUI JavaScript --&gt;
+        ///    &lt;script
+        ///      src=&quot;https://cdn.jsdelivr.net/npm/mdui@1.0.1/dist/js/mdui.min.js&quot;
+        ///      integrity=&quot;sha384-gCMZcshYKOGRX9r6wbDrvF+TcCCswSHFucUzUPwka+ [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        /// </summary>
+        internal static string table_2 {
+            get {
+                return ResourceManager.GetString("table_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似           &lt;!-- END CHANGE --&gt;
+        ///      &lt;/div&gt;
+        ///      
+        ///      &lt;button class=&quot;mdui-btn mdui-btn-raised mdui-ripple mdui-color-indigo mdui-valign mdui-center&quot;
+        ///        onClick=&quot;window.location.replace(&apos;empty.html&apos;);&quot; style=&quot;margin-top: 20px;&quot;&gt;确认
+        ///        &lt;i class=&quot;mdui-icon material-icons&quot;&gt;
+        ///        check&lt;/i&gt;&lt;/button&gt;
+        ///    &lt;/div&gt;
+        ///    &lt;!-- MDUI JavaScript --&gt;
+        ///    &lt;script
+        ///      src=&quot;https://cdn.jsdelivr.net/npm/mdui@1.0.1/dist/js/mdui.min.js&quot;
+        ///      integrity=&quot;sha384-gCMZcshYKOGRX9r6wbDrvF+TcCCswSHFucUzUPwka+Gr [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        /// </summary>
+        internal static string table_2_cn {
+            get {
+                return ResourceManager.GetString("table_2_cn", resourceCulture);
+            }
+        }
     }
 }

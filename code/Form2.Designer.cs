@@ -29,6 +29,7 @@ namespace Windows_Store_Downloader
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form2));
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.SuspendLayout();
@@ -54,11 +55,11 @@ namespace Windows_Store_Downloader
             this.Controls.Add(this.webBrowser1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Form2";
-            this.ShowIcon = false;
-            this.Text = "Form2";
+            this.Text = "Download";
             this.Load += new System.EventHandler(this.Form2_Load);
             this.ResumeLayout(false);
 
