@@ -2,6 +2,8 @@
 using System.Drawing;
 using System.Windows.Forms;
 using System.Threading;
+using System.Drawing.Drawing2D;
+using System.Runtime.InteropServices;
 
 namespace Windows_Store_Downloader
 {
@@ -71,10 +73,16 @@ namespace Windows_Store_Downloader
             downloadButton.Enabled = false;
             Form2.complete = false;
             progressBar1.Value = 0;
-            if (typeBox.SelectedIndex == -1 || routeBox.SelectedIndex == -1 || langText.Text == "" || attributeText.Text == "")
+            if (typeBox.SelectedIndex == -1 || routeBox.SelectedIndex == -1 || attributeText.Text == "")
             {
                 MessageBox.Show(Language.lang_baddown,Language.lang_baddowninfo,MessageBoxButtons.OK,MessageBoxIcon.Error);
-            } else {
+            }
+            else
+            {
+                if (langText.Text == "")
+                {
+                    langText.Text = System.Threading.Thread.CurrentThread.CurrentCulture.Name; 
+                }
                 postContent = "type=" + Http_Post.type[typeBox.SelectedIndex] + "&url=" + attributeText.Text + "&ring=" +
           Http_Post.ring[routeBox.SelectedIndex] + "&lang=" + langText.Text;
 
@@ -92,6 +100,7 @@ namespace Windows_Store_Downloader
                 }
                 progressBar1.Value = 100;
                 downloadButton.Enabled = true;
+                new Form2().ShowDialog();
             }
             
         }
@@ -108,6 +117,19 @@ namespace Windows_Store_Downloader
 
         private void Form1_Load(object sender, EventArgs e)
         {
+
+
+            User32.AnimateWindow(this.Handle, 1000, User32.AW_BLEND | User32.AW_ACTIVE | User32.AW_VER_NEGATIVE);
+
+            Bitmap a = Properties.Resources.store;
+            a.MakeTransparent(Color.FromArgb(0, 255, 0));
+            pictureBox1.BackgroundImage = a;
+            if (System.Diagnostics.Debugger.IsAttached != true)
+            {
+                langText.Visible = false;
+                langPackText.Visible = false;
+            }
+            
             WriteToTemp.ReadFrom();
             if (System.Threading.Thread.CurrentThread.CurrentCulture.Name == "zh-CN") {
                 Chinese_Lang();
@@ -158,5 +180,33 @@ namespace Windows_Store_Downloader
                 textBoxHasText = true;
             }
         }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            User32.AnimateWindow(this.Handle, 1000, User32.AW_BLEND | User32.AW_HIDE);
+        }
+    }
+    class User32
+    {
+        /// <summary>
+        /// 窗体动画函数
+        /// </summary>
+        /// <param name="hwnd">指定产生动画的窗口的句柄</param>
+        /// <param name="dwTime">指定动画持续的时间</param>
+        /// <param name="dwFlags">指定动画类型，可以是一个或多个标志的组合。</param>
+        /// <returns></returns>
+        [DllImport("user32")]
+        public static extern bool AnimateWindow(IntPtr hwnd, int dwTime, int dwFlags);
+
+        //下面是可用的常量，根据不同的动画效果声明自己需要的
+        public const int AW_HOR_POSITIVE = 0x0001;//自左向右显示窗口，该标志可以在滚动动画和滑动动画中使用。使用AW_CENTER标志时忽略该标志
+        public const int AW_HOR_NEGATIVE = 0x0002;//自右向左显示窗口，该标志可以在滚动动画和滑动动画中使用。使用AW_CENTER标志时忽略该标志
+        public const int AW_VER_POSITIVE = 0x0004;//自顶向下显示窗口，该标志可以在滚动动画和滑动动画中使用。使用AW_CENTER标志时忽略该标志
+        public const int AW_VER_NEGATIVE = 0x0008;//自下向上显示窗口，该标志可以在滚动动画和滑动动画中使用。使用AW_CENTER标志时忽略该标志该标志
+        public const int AW_CENTER = 0x0010;//若使用了AW_HIDE标志，则使窗口向内重叠；否则向外扩展
+        public const int AW_HIDE = 0x10000;//隐藏窗口
+        public const int AW_ACTIVE = 0x20000;//激活窗口，在使用了AW_HIDE标志后不要使用这个标志
+        public const int AW_SLIDE = 0x40000;//使用滑动类型动画效果，默认为滚动动画类型，当使用AW_CENTER标志时，这个标志就被忽略
+        public const int AW_BLEND = 0x80000;//使用淡入淡出效果
     }
 }

@@ -17,9 +17,14 @@ namespace Windows_Store_Downloader
             {
                 return Post(LINK_HTTP, content);
             }
-            catch (Exception)
+            catch (TimeoutException ex)
             {
-                Language.InternalErrMsgBox();
+                System.Windows.Forms.MessageBox.Show(ex.Message, "!");
+                return "";
+            }
+            catch (Exception ex)
+            {
+                Language.InternalErrMsgBox(ex);
                 return "";
             }
         }

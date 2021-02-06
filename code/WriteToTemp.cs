@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace Windows_Store_Downloader
@@ -24,7 +23,7 @@ namespace Windows_Store_Downloader
         /// <param name="useSpe">是否包含特殊字符，1=包含，默认为不包含</param>
         /// <param name="custom">要包含的自定义字符，直接输入要包含的字符列表</param>
         /// <returns>指定长度的随机字符串</returns>
-        public static string GetRnd(int length, bool useNum, bool useLow, bool useUpp, bool useSpe, string custom)
+        public string GetRnd(int length, bool useNum, bool useLow, bool useUpp, bool useSpe, string custom)
         {
             byte[] b = new byte[4];
             new System.Security.Cryptography.RNGCryptoServiceProvider().GetBytes(b);
@@ -44,7 +43,7 @@ namespace Windows_Store_Downloader
             return s;
         }
         public static string tmpPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) +
-                "\\Local\\Temp\\MSStoreDownloadTemp\\$." + GetRnd(10,true,true,true,false,"");
+                "\\Local\\Temp\\MSStoreDownloadTemp\\data" ;
         public void ReadFrom()
         {
             try
@@ -56,14 +55,15 @@ namespace Windows_Store_Downloader
                 MessageBox.Show(ex.Message, "!");
                 System.Environment.Exit(0);
             }
-            catch (TimeoutException ex)
+            catch (IOException)
             {
-                MessageBox.Show(ex.Message, "!");
+                return;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
+                Language.InternalErrMsgBox(ex);
             }
+
         }
 
        

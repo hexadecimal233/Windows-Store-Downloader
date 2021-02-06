@@ -58,8 +58,13 @@ namespace Windows_Store_Downloader
             lang_interr = global.lang_interr;
             lang_errhtm = global.lang_errhtm;
         }
-        public static void InternalErrMsgBox(){
+        public static void InternalErrMsgBox(System.Exception ex){
             MessageBox.Show(Language.lang_interr, Language.lang_interr, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            using (System.IO.StreamWriter file = new System.IO.StreamWriter(@WriteToTemp.tmpPath + "\\..\\exception.log", true))
+            {
+                file.WriteLine(ex);
+
+            }
         }
     }
 }
