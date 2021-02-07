@@ -13,7 +13,9 @@ You should download packages of your system and install them all.
 
 Some codes are from the Internet.
 
-Example:![image](doc/example.webp)
+Example:
+
+![image](doc/example.webp)
 
 ### Features
 * Download Microsoft Store Apps

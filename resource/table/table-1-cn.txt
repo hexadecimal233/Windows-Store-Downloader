@@ -15,7 +15,7 @@
     />
     <link rel="stylesheet" href="padding.css"/>
     <link rel="icon" href="icon.ico">
-    <title>Download</title>
+    <title>下载</title>
   </head>
   <body>
     <div class="mdui-panel" mdui-panel>

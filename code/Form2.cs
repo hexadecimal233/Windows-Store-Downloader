@@ -121,6 +121,7 @@ namespace Windows_Store_Downloader
         }
          private void Form2_Load(object sender, EventArgs e)
         {
+            this.Text = Language.lang_down;
             var urlString = new Uri(WriteToTemp.tmpPath + @"\" + Language.lang_tablehtm);
             Debug.WriteLine(urlString);
             if (System.Diagnostics.Debugger.IsAttached == true)
