@@ -69,12 +69,12 @@ namespace Windows_Store_Downloader
             string result3 = Mdui(result2);
             Debug.WriteLine(result3);
             string result4;
-            if(Language.langUsing == "global")//language
+            if(Language.langUsing == "global")
             {
                 result4 = Properties.Resources.table_1 + "\n" + result3 + "\n" + Properties.Resources.table_2;
             } else {
                 result4 = Properties.Resources.table_1_cn + "\n" + result3 + "\n" + Properties.Resources.table_2_cn;
-            } 
+            } //language
             
             
             File.WriteAllText(WriteToTemp.tmpPath + @"\" + Language.lang_tablehtm,result4);//写出合并后的文本
@@ -100,28 +100,45 @@ namespace Windows_Store_Downloader
         }
         private string Mdui(string old)//加入Mdui格式
         {
-            string new1;
+            string new1,new2;
             new1 = old.Replace("class=\"tftable\" border=\"1\" align=\"center\"",
                 "class=\"mdui-table\" style=\"margin-left: 20px;margin-right: 20px;margin-top: 20px;\"")
                 .Replace("style=\"width:180px;\"", "")
                 .Replace("style=\"width:300px;\"", "")
                 .Replace("style=\"width:60px;\"", "")
                 .Replace("style=\"background-color:rgba(255, 255, 255, 0.8)\"", "")
-                .Replace("style=\"background-color:rgba(188, 235, 240, 0.8)\"", "class=\"mdui-color-blue-100\"");
-            return new1;
+                .Replace("style=\"background-color:rgba(188, 235, 240, 0.8)\"", "class=\"mdui-color-blue-100\"")
+                .Replace("1970-01-01 00:00:00 GMT","Unlimited");
+            if (Language.langUsing != "global")
+            {
+                new2 = new1.Replace("File:", "文件:")
+                    .Replace("Expire:","过期时间:").
+                    Replace("SHA-1:","SHA-1校验值:")
+                    .Replace("Size:","文件大小:");
+            } else { new2 = new1; }
+
+                return new2;
         }
          private void Form2_Load(object sender, EventArgs e)
         {
-            //打开网页
             var urlString = new Uri(WriteToTemp.tmpPath + @"\" + Language.lang_tablehtm);
             Debug.WriteLine(urlString);
             if (System.Diagnostics.Debugger.IsAttached == true)
             {
                 webBrowser1.AllowWebBrowserDrop = true;
             }
+            if (returnid != 2)
+            {
+                webBrowser1.Navigate(urlString);
+            }
+            else
+            {
+                webBrowser1.Navigate(WriteToTemp.tmpPath + "\\" + Language.lang_errhtm);
+            }             //打开网页
 
-            webBrowser1.Navigate(urlString);
-            
+
+
+
             webBrowser1.DocumentTitleChanged += DocTitleClose;
         }
         private void DocTitleClose(object sender, EventArgs e)

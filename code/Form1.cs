@@ -77,9 +77,11 @@ namespace Windows_Store_Downloader
             downloadButton.Enabled = false;//禁止重复点击
             Form2.complete = false;
             progressBar1.Value = 0;
-            if (typeBox.SelectedIndex == -1 || routeBox.SelectedIndex == -1 || attributeText.Text == "")
+            HasText();
+            if (typeBox.SelectedIndex == -1 || routeBox.SelectedIndex == -1 || textBoxHasText == false)
             {
                 MessageBox.Show(Language.lang_baddown,Language.lang_baddowninfo,MessageBoxButtons.OK,MessageBoxIcon.Error);
+                downloadButton.Enabled = true;
                 return;
             }//参数完整
            
@@ -110,7 +112,9 @@ namespace Windows_Store_Downloader
                     MessageBox.Show(Language.lang_interr, Language.lang_interr, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }//意外
-                
+                if (Form2.returnid == 2) {
+                Form2.ShowDialog();
+                }//空响应
                 if (Form2.returnid == 1)//浏览
                 {
                     try
@@ -120,7 +124,7 @@ namespace Windows_Store_Downloader
                     {
                         Language.InternalErrMsgBox(ex);
                     }
-                }
+                }//OK
 
             
             
@@ -207,8 +211,6 @@ namespace Windows_Store_Downloader
             {
                 langText.Visible = false;
                 langPackText.Visible = false;
-                debugWebsite.Visible = false;
-                debugWebBrowser.Visible = false;
             }//调试内容
             typeBox.SelectedIndex = 0;
             routeBox.SelectedIndex = 2;
@@ -221,29 +223,31 @@ namespace Windows_Store_Downloader
           
         }
 
-        
+        private Rectangle rect;
+        private bool firstPaint = true;
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
-            
+            //防止画窗口出错
+            if(firstPaint == true)
+            {
+                firstPaint = false;
+                rect = this.ClientRectangle;
+            }
                 
 
                 Graphics g = e.Graphics;   //实例化Graphics 对象g
                 Color FColor = Color.FromArgb(0xE8, 0xF1, 0xE7); //颜色1
                 Color TColor = Color.FromArgb(0xCA, 0xC7, 0xC7);  //颜色2
-                Brush b = new LinearGradientBrush(this.ClientRectangle, FColor, TColor, LinearGradientMode.BackwardDiagonal);  //实例化刷子，第一个参数指示上色区域，第二个和第三个参数分别渐变颜色的开始和结束，第四个参数表示颜色的方向。
+                Brush b = new LinearGradientBrush(rect, FColor, TColor, LinearGradientMode.BackwardDiagonal);  //实例化刷子，第一个参数指示上色区域，第二个和第三个参数分别渐变颜色的开始和结束，第四个参数表示颜色的方向。
                 g.FillRectangle(b, this.ClientRectangle);  //进行上色 
 
 
-
-
-        }
-
-        private void debugWebBrowser_Click(object sender, EventArgs e)
-        {
-            new Form2().Show();
-            //Form2.webBrowser1.Navigate(debugWebsite.Text);
             
+
         }
+
+
+        
 
         private void button1_Click(object sender, EventArgs e)
         {

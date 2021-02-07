@@ -20,7 +20,7 @@
   <body>
     <div class="mdui-panel" mdui-panel>
       <div class="mdui-toolbar mdui-color-indigo">
-        <span class="mdui-typo-title">Download link generated!</span>
+        <span class="mdui-typo-title">链接已生成!</span>
         <div class="mdui-toolbar-spacer"></div>
         
         <a href="https://store.rg-adguard.net/" target="_blank" class="mdui-btn mdui-btn-icon"mdui-tooltip="{content: 'API提供：store.rp-adguard.net'}"><i class="mdui-icon material-icons">search</i></a>

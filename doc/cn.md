@@ -13,7 +13,7 @@
 
 部分代码来自互联网。
 
-例图:![image](example.gif)
+例图:![image](cn.webp)
 
 ### Features
 * 下载微软商店的原因

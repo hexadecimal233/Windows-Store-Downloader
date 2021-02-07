@@ -42,7 +42,6 @@ namespace Windows_Store_Downloader
             this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 23);
             this.webBrowser1.Name = "webBrowser1";
             this.webBrowser1.ScriptErrorsSuppressed = true;
-            this.webBrowser1.ScrollBarsEnabled = false;
             this.webBrowser1.Size = new System.Drawing.Size(1256, 750);
             this.webBrowser1.TabIndex = 0;
             this.webBrowser1.Url = new System.Uri("", System.UriKind.Relative);
