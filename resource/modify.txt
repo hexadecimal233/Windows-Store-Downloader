@@ -1,0 +1,5 @@
+替换class="tftable" border="1" align="center"变为 class="mdui-table" style="margin-left: 20px;margin-right: 20px;margin-top: 20px;"
+删除style="width:180px;" style="width:300px;" style="width:60px;" 
+删除style="background-color:rgba(255, 255, 255, 0.8)" 
+替换a href="http:// 为 a target="_blank" href="http://
+替换style="background-color:rgba(188, 235, 240, 0.8)" 为 class="mdui-color-blue-100"

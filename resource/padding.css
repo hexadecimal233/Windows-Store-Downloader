@@ -1,0 +1,52 @@
+table {
+    padding-top: 15px;
+    padding-right: 5%;
+    padding-bottom: 2ex;
+    padding-left: 5%;
+    }
+
+body {
+   padding-top: 15px;
+   padding-right: 5%;
+   padding-bottom: 2ex;
+   padding-left: 5%;
+    }
+
+    /*整体部分*/ 
+::-webkit-scrollbar
+{
+	width: 10px;
+	height: 10px;
+}
+/*滑动轨道*/ 
+::-webkit-scrollbar-track
+{
+	border-radius: 0px;
+	background: none;
+}
+/*滑块*/
+::-webkit-scrollbar-thumb
+{
+	border-radius: 5px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.2);
+    box-shadow: inset 0 0 6px rgba(0,0,0,.2);
+	background-color: rgba(255,255,255,.75)
+}
+/*滑块效果*/ 
+::-webkit-scrollbar-thumb:hover
+{
+	border-radius: 5px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.2);
+    box-shadow: inset 0 0 6px rgba(0,0,0,.2);
+	background-color: rgba(85, 85, 85, 0.4);
+}
+div {
+scrollbar-face-color: #fcfcfc;
+scrollbar-highlight-color: #6c6c90;
+scrollbar-shadow-color: #fcfcfc;
+scrollbar-3dlight-color: #fcfcfc;
+scrollbar-arrow-color: #240024;
+scrollbar-track-color: #fcfcfc;
+scrollbar-darkshadow-color: #48486c;
+scrollbar-base-color: #fcfcfc
+}
