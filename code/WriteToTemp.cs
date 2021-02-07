@@ -8,6 +8,7 @@ namespace Windows_Store_Downloader
 {
     class WriteToTemp
     {
+        
         //随机字符串生成器的主要功能如下： 
         //1、支持自定义字符串长度
         //2、支持自定义是否包含数字
