@@ -127,14 +127,14 @@ namespace Windows_Store_Downloader.Properties {
         ///      &lt;/div&gt;
         ///      
         ///      &lt;button class=&quot;mdui-btn mdui-btn-raised mdui-ripple mdui-color-indigo mdui-valign mdui-center&quot;
-        ///        onClick=&quot;window.location.replace(&apos;empty.html&apos;);&quot; style=&quot;margin-top: 20px;&quot;&gt;Okay
+        ///        onClick=&quot;document.title = &apos;IAMOKAY&apos;;&quot; style=&quot;margin-top: 20px;&quot;&gt;Okay
         ///        &lt;i class=&quot;mdui-icon material-icons&quot;&gt;
         ///        check&lt;/i&gt;&lt;/button&gt;
         ///    &lt;/div&gt;
         ///    &lt;!-- MDUI JavaScript --&gt;
         ///    &lt;script
         ///      src=&quot;https://cdn.jsdelivr.net/npm/mdui@1.0.1/dist/js/mdui.min.js&quot;
-        ///      integrity=&quot;sha384-gCMZcshYKOGRX9r6wbDrvF+TcCCswSHFucUzUPwka+ [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        ///      integrity=&quot;sha384-gCMZcshYKOGRX9r6wbDrvF+TcCCswSHFucUzUPwka+Gr+uHgjlYvk [字符串的其余部分被截断]&quot;; 的本地化字符串。
         /// </summary>
         internal static string table_2 {
             get {
@@ -147,14 +147,14 @@ namespace Windows_Store_Downloader.Properties {
         ///      &lt;/div&gt;
         ///      
         ///      &lt;button class=&quot;mdui-btn mdui-btn-raised mdui-ripple mdui-color-indigo mdui-valign mdui-center&quot;
-        ///        onClick=&quot;window.location.replace(&apos;empty.html&apos;);&quot; style=&quot;margin-top: 20px;&quot;&gt;确认
+        ///        onClick=&quot;document.title = &apos;IAMOKAY&apos;;&quot; style=&quot;margin-top: 20px;&quot;&gt;确认
         ///        &lt;i class=&quot;mdui-icon material-icons&quot;&gt;
         ///        check&lt;/i&gt;&lt;/button&gt;
         ///    &lt;/div&gt;
         ///    &lt;!-- MDUI JavaScript --&gt;
         ///    &lt;script
         ///      src=&quot;https://cdn.jsdelivr.net/npm/mdui@1.0.1/dist/js/mdui.min.js&quot;
-        ///      integrity=&quot;sha384-gCMZcshYKOGRX9r6wbDrvF+TcCCswSHFucUzUPwka+Gr [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        ///      integrity=&quot;sha384-gCMZcshYKOGRX9r6wbDrvF+TcCCswSHFucUzUPwka+Gr+uHgjlYvkAB [字符串的其余部分被截断]&quot;; 的本地化字符串。
         /// </summary>
         internal static string table_2_cn {
             get {

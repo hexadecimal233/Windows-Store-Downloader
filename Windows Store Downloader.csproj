@@ -163,7 +163,6 @@
     <None Include="resource\table\table-2-cn.txt" />
     <None Include="resource\table\table-1-cn.txt" />
     <None Include="resource\table\table-2.txt" />
-    <None Include="resources\table_2.txt" />
     <None Include="resource\table\table-1.txt" />
     <None Include="resources\store.png" />
   </ItemGroup>

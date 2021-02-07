@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Runtime.InteropServices;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Windows_Store_Downloader
@@ -20,6 +21,7 @@ namespace Windows_Store_Downloader
         
         private bool textBoxHasText = false;
         Form2 Form2 = new Form2();
+ 
         WriteToTemp WriteToTemp = new WriteToTemp();
         public static string postContent;
         private void AttributeInputReady(object sender, EventArgs e)
@@ -71,21 +73,20 @@ namespace Windows_Store_Downloader
             return Language.lang_attributes[typeBox.SelectedIndex];
         }//获取当前项的本地化文本
 
-        
+
         private void DownloadButton_Click(object sender, EventArgs e)
         {
+            progressBar1.Value = 0;
             downloadButton.Enabled = false;//禁止重复点击
             Form2.complete = false;
-            progressBar1.Value = 0;
             HasText();
             if (typeBox.SelectedIndex == -1 || routeBox.SelectedIndex == -1 || textBoxHasText == false)
             {
+                
                 MessageBox.Show(Language.lang_baddown,Language.lang_baddowninfo,MessageBoxButtons.OK,MessageBoxIcon.Error);
                 downloadButton.Enabled = true;
                 return;
             }//参数完整
-           
-            
                 if (langText.Text == "")
                 {
                     langText.Text = Thread.CurrentThread.CurrentCulture.Name; 
@@ -93,31 +94,40 @@ namespace Windows_Store_Downloader
                 postContent = "type=" + Http_Post.type[typeBox.SelectedIndex] + "&url=" + attributeText.Text + "&ring=" +
                     Http_Post.ring[routeBox.SelectedIndex] + "&lang=" + langText.Text;
 
-                Thread post = new Thread(Form2.Browse);
+            
+            Thread post = new Thread(Form2.Browse);
                 post.SetApartmentState(ApartmentState.STA);
                 post.Start();  //POST线程
-                while (Form2.complete == false)
+
+
+            while (Form2.complete == false)
+            {
+                if (progressBar1.Value <= 99)
                 {
-                    if(progressBar1.Value <= 99)
-                    {
-                        Random random = new Random(new Guid().GetHashCode());
-                        Thread.Sleep(random.Next(67, 101));
-                        progressBar1.PerformStep();
-                    }
-                }//伪装进度条
-                progressBar1.Value = 100;
-                downloadButton.Enabled = true;
-                if (Form2.returnid == -1)
+                    Random random = new Random(new Guid().GetHashCode());
+                    Thread.Sleep(random.Next(67, 101));
+                    progressBar1.PerformStep();
+
+                }
+               
+            }//伪装进度条
+            progressBar1.Value = 100;
+            downloadButton.Enabled = true;
+
+
+            
+            if (Form2.returnid == -1)
                 {
-                    MessageBox.Show(Language.lang_interr, Language.lang_interr, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
+                 MessageBox.Show(Language.lang_interr, Language.lang_interr, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                 return;
                 }//意外
                 if (Form2.returnid == 2) {
+
                 Form2.ShowDialog();
                 }//空响应
                 if (Form2.returnid == 1)//浏览
                 {
-                    try
+                try
                     {
                         new Form2().ShowDialog();
                     } catch (Exception ex)
@@ -247,12 +257,8 @@ namespace Windows_Store_Downloader
         }
 
 
-        
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Debug.WriteLine(Form2.webBrowser1.Url);
-        }
+
 
     }
     class User32
@@ -266,6 +272,10 @@ namespace Windows_Store_Downloader
         /// <returns></returns>
         [DllImport("user32")]
         public static extern bool AnimateWindow(IntPtr hwnd, int dwTime, int dwFlags);
+        [DllImport("user32")]
+        public static extern IntPtr FindWindow(string a, string b);
+        [DllImport("user32")]
+        public static extern IntPtr PostMessage(IntPtr hWnd, int msg, IntPtr wp, IntPtr lp);
 
         //下面是可用的常量，根据不同的动画效果声明自己需要的
         public const int AW_HOR_POSITIVE = 0x0001;//自左向右显示窗口，该标志可以在滚动动画和滑动动画中使用。使用AW_CENTER标志时忽略该标志

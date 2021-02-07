@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,7 +14,7 @@ namespace Windows_Store_Downloader
 {
     public partial class Form2 : Form
     {
-       
+
         public Form2()
         {
             InitializeComponent();
@@ -26,7 +27,7 @@ namespace Windows_Store_Downloader
         /// 1：完成
         /// 2：空响应
         /// </summary>
-        public bool complete = false;
+        public static bool complete = false;
         Http_Post Http_Post = new Http_Post();
         public void Browse()
         {
@@ -46,7 +47,7 @@ namespace Windows_Store_Downloader
             result = "";
             string content = Form1.postContent;
             result = Http_Post.StartPostData(content); //POST
-            if (result == "")  
+            if (result == "")
             {
                 returnid = -1;
                 complete = true;
@@ -69,17 +70,17 @@ namespace Windows_Store_Downloader
             string result3 = Mdui(result2);
             Debug.WriteLine(result3);
             string result4;
-            if(Language.langUsing == "global")
+            if (Language.langUsing == "global")
             {
                 result4 = Properties.Resources.table_1 + "\n" + result3 + "\n" + Properties.Resources.table_2;
             } else {
-                result4 = Properties.Resources.table_1_cn + "\n" + result3 + "\n" + Properties.Resources.table_2_cn;
+                result4 = (Properties.Resources.table_1_cn + "\n" + result3 + "\n" + Properties.Resources.table_2_cn).Replace("target=\"_blank\"", "");
             } //language
-            
-            
-            File.WriteAllText(WriteToTemp.tmpPath + @"\" + Language.lang_tablehtm,result4);//写出合并后的文本
+
+
+            File.WriteAllText(WriteToTemp.tmpPath + @"\" + Language.lang_tablehtm, result4);//写出合并后的文本
             returnid = 1; //成功
-            complete = true;            
+            complete = true;
             return;
         }//POST和格式化等
         private string RemoveUselessContent(string old)//格式化
@@ -96,11 +97,11 @@ namespace Windows_Store_Downloader
                 Language.InternalErrMsgBox(ex);
                 return "";
             }
-            
+
         }
         private string Mdui(string old)//加入Mdui格式
         {
-            string new1,new2;
+            string new1, new2;
             new1 = old.Replace("class=\"tftable\" border=\"1\" align=\"center\"",
                 "class=\"mdui-table\" style=\"margin-left: 20px;margin-right: 20px;margin-top: 20px;\"")
                 .Replace("style=\"width:180px;\"", "")
@@ -108,18 +109,20 @@ namespace Windows_Store_Downloader
                 .Replace("style=\"width:60px;\"", "")
                 .Replace("style=\"background-color:rgba(255, 255, 255, 0.8)\"", "")
                 .Replace("style=\"background-color:rgba(188, 235, 240, 0.8)\"", "class=\"mdui-color-blue-100\"")
-                .Replace("1970-01-01 00:00:00 GMT","Unlimited");
+                .Replace("1970-01-01 00:00:00 GMT", "Unlimited");
             if (Language.langUsing != "global")
             {
                 new2 = new1.Replace("File:", "文件:")
-                    .Replace("Expire:","过期时间:").
-                    Replace("SHA-1:","SHA-1校验值:")
-                    .Replace("Size:","文件大小:");
+                    .Replace("Expire:", "过期时间:").
+                    Replace("SHA-1:", "SHA-1校验值:")
+                    .Replace("Size:", "文件大小:")
+                    .Replace("Unlimited", "永不过期");
             } else { new2 = new1; }
 
-                return new2;
+
+            return new2;
         }
-         private void Form2_Load(object sender, EventArgs e)
+        private void Form2_Load(object sender, EventArgs e)
         {
             this.Text = Language.lang_down;
             var urlString = new Uri(WriteToTemp.tmpPath + @"\" + Language.lang_tablehtm);
@@ -141,6 +144,7 @@ namespace Windows_Store_Downloader
 
 
             webBrowser1.DocumentTitleChanged += DocTitleClose;
+            webBrowser1.Navigating += new WebBrowserNavigatingEventHandler(webBrowser1_Navigating);
         }
         private void DocTitleClose(object sender, EventArgs e)
         {
@@ -149,6 +153,32 @@ namespace Windows_Store_Downloader
                 Close();
             }
         }
+
+
+
+
+        private void webBrowser1_Navigating(object sender, WebBrowserNavigatingEventArgs e)
+        {
+            
+            string url = e.Url.AbsoluteUri;
+            Debug.WriteLine(url);
+            if (url.IndexOf("delivery.mp.microsoft.com") != -1 ||
+                url.IndexOf("github.com") != -1 ||
+                url.IndexOf("store.rg-adguard.net") != -1)
+
+            {
+                
+                e.Cancel = true;
+
+                string filepath = url;
+                Debug.WriteLine(filepath);
+                Process.Start(filepath);
+                
+
+            }
+        }//调用浏览器下载
+
+
     }
     
 }

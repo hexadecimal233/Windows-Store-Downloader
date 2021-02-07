@@ -14,7 +14,7 @@ namespace Windows_Store_Downloader
 
         public string StartPostData(string content)
         {
-            Debug.WriteLine("<POST> Post Link: " + LINK_HTTP + " ; Post Data: " + content + "<POST>");
+            Debug.WriteLine("POST > Post Link: " + LINK_HTTP + " ; Post Data: " + content + "<POST>");
             try
             {
                 return Post(LINK_HTTP, content);

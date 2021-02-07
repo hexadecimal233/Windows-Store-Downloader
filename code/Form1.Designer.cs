@@ -42,8 +42,8 @@ namespace Windows_Store_Downloader
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.progressText = new System.Windows.Forms.Label();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -51,9 +51,9 @@ namespace Windows_Store_Downloader
             // downloadButton
             // 
             this.downloadButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.downloadButton.Location = new System.Drawing.Point(420, 458);
+            this.downloadButton.Location = new System.Drawing.Point(344, 523);
             this.downloadButton.Name = "downloadButton";
-            this.downloadButton.Size = new System.Drawing.Size(336, 115);
+            this.downloadButton.Size = new System.Drawing.Size(243, 66);
             this.downloadButton.TabIndex = 0;
             this.downloadButton.Text = "Download";
             this.downloadButton.UseMnemonic = false;
@@ -185,38 +185,38 @@ namespace Windows_Store_Downloader
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.BackgroundImage = global::Windows_Store_Downloader.Properties.Resources.store;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox1.Location = new System.Drawing.Point(775, 396);
+            this.pictureBox1.Location = new System.Drawing.Point(790, 396);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(289, 193);
             this.pictureBox1.TabIndex = 8;
             this.pictureBox1.TabStop = false;
             // 
-            // progressBar1
-            // 
-            this.progressBar1.Location = new System.Drawing.Point(145, 334);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(919, 38);
-            this.progressBar1.Step = 1;
-            this.progressBar1.TabIndex = 11;
-            // 
             // progressText
             // 
             this.progressText.BackColor = System.Drawing.Color.Transparent;
             this.progressText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.progressText.Location = new System.Drawing.Point(11, 329);
+            this.progressText.Location = new System.Drawing.Point(12, 324);
             this.progressText.Name = "progressText";
             this.progressText.Size = new System.Drawing.Size(128, 74);
             this.progressText.TabIndex = 12;
             this.progressText.Text = "Query Progress";
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(146, 342);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(910, 38);
+            this.progressBar1.Step = 1;
+            this.progressBar1.TabIndex = 13;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1109, 625);
+            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.progressText);
-            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.langBox);
@@ -253,9 +253,9 @@ namespace Windows_Store_Downloader
         private System.Windows.Forms.Label label1;
         public System.Windows.Forms.ComboBox langBox;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Label progressText;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.ProgressBar progressBar1;
     }
 }
 
