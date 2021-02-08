@@ -270,6 +270,7 @@ namespace Windows_Store_Downloader
             this.downloadButton.TabIndex = 19;
             this.downloadButton.Text = "Download";
             this.downloadButton.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.downloadButton.Click += new System.EventHandler(this.DownloadButton_Click);
             this.downloadButton.MouseEnter += new System.EventHandler(this.downloadButton_MouseEnter);
             this.downloadButton.MouseLeave += new System.EventHandler(this.downloadButton_MouseLeave);
             // 
