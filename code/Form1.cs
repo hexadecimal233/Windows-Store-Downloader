@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.IO;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
@@ -173,15 +174,20 @@ namespace Windows_Store_Downloader
             {
                 this.TransparencyKey = Color.FromArgb(0xf1f1f0);//R不等于B
                 RefreshForm();
-                Acrylic.setBlur(this.Handle, 0x30f2f2f2);//亚克力效果
+                SetBlur1(this.Handle, 0x3FFFFFFF);//亚克力效果
             }//WIN10亚克力
             
-
-           
-            
-
         }
-
+        private void SetBlur1(IntPtr hWnd,int gradientColor)
+        {
+            if (File.Exists("acrylic.dll") == false)
+            {
+                MessageBox.Show("acrylic.dll not found.Please put the dll to current directory." +
+                    "\n无法找到acrylic.dll。请把它放到当前目录。");
+                Environment.Exit(0);
+            }
+            Acrylic.SetBlur(hWnd, gradientColor);
+        }//容错dll
         private void Chinese_Lang()
         {
             Language.Chinese_Lang();
@@ -404,7 +410,8 @@ namespace Windows_Store_Downloader
     }//淡入淡出
     class Acrylic
     {
-        [DllImport("acrylic")]
-        public static extern void setBlur(IntPtr hWnd, int gradientColor);
+        
+        [DllImport("acrylic", CharSet = CharSet.Auto, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void SetBlur(IntPtr hWnd, int gradientColor);
     }
 }
