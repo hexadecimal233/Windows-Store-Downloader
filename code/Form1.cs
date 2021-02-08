@@ -382,6 +382,11 @@ namespace Windows_Store_Downloader
         private void label3_MouseLeave(object sender, EventArgs e) { 
         MinimizeButton.BackColor = Color.FromArgb(0, 0, 0, 0);
         }
+
+        private void MinimizeButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
     class User32
     {

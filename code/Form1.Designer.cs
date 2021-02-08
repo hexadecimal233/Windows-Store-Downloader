@@ -285,6 +285,7 @@ namespace Windows_Store_Downloader
             this.MinimizeButton.TabIndex = 20;
             this.MinimizeButton.Text = "0";
             this.MinimizeButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.MinimizeButton.Click += new System.EventHandler(this.MinimizeButton_Click);
             this.MinimizeButton.MouseEnter += new System.EventHandler(this.label3_MouseEnter);
             this.MinimizeButton.MouseLeave += new System.EventHandler(this.label3_MouseLeave);
             // 
