@@ -100,7 +100,8 @@ namespace Windows_Store_Downloader
 
             
             Thread post = new Thread(Form2.Browse);
-                post.SetApartmentState(ApartmentState.STA);
+            post.IsBackground = true;
+            post.SetApartmentState(ApartmentState.STA);
                 post.Start();  //POST线程
 
 
@@ -330,21 +331,46 @@ namespace Windows_Store_Downloader
             
         }
 
-
+        Thread thread2;
         private void CloseButton_MouseLeave(object sender, EventArgs e)
         {
-                CloseButton.BackColor = Color.FromArgb(0, 0, 0, 0);
+            thread2 = new Thread(GoIntoB);
+            thread2.IsBackground = true;
+            thread2.Start();
         }
 
         private void CloseButton_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
+        Thread thread1;
         private void CloseButton_MouseHover(object sender, EventArgs e)
         {
-            CloseButton.BackColor = Color.FromArgb(255, 228, 5, 0);
+            thread1 = new Thread(GoIntoA);
+            thread1.IsBackground = true;
+            thread1.Start();
+            
         }
+        private void GoIntoA()
+        {
+            for (int i = 0; i < 228; i += 4)
+            {
+                Thread.Sleep(1);
+                this.CloseButton.BackColor = Color.FromArgb(i, i, 5, 0);
+            }
+
+        }
+        private void GoIntoB()
+        {
+            thread1.Abort();
+            for (int i = this.CloseButton.BackColor.A; i > 0; i -= 4)
+            {
+                Thread.Sleep(1);
+                this.CloseButton.BackColor = Color.FromArgb(i, i, 0, 0);
+            }
+            this.CloseButton.BackColor = Color.FromArgb(0, 0, 0, 0);
+        }
+
         public void SetWindowRegion()
         {
             GraphicsPath FormPath1, FormPath2;
