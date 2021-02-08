@@ -2,7 +2,7 @@
 
 
 ## Microsoft Store Downloader
-![image](https://img.shields.io/packagist/stars/ThebestkillerTBK/Windows-Store-Downloader)
+<iframe src="https://ghbtns.com/github-btn.html?user=ThebestkillerTBK&repo=Windows-Store-Downloader&type=star&count=true" frameborder="0" scrolling="0" width="150" height="20" title="GitHub"></iframe>
 ![License](https://img.shields.io/badge/License-LGPL-green.svg)
 ### Introduction
 A tool helps you to download Microsoft Store applications without any limitations.
