@@ -30,7 +30,6 @@ namespace Windows_Store_Downloader
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.downloadButton = new System.Windows.Forms.Button();
             this.routeText = new System.Windows.Forms.Label();
             this.routeBox = new System.Windows.Forms.ComboBox();
             this.typeLinkText = new System.Windows.Forms.Label();
@@ -44,25 +43,20 @@ namespace Windows_Store_Downloader
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.progressText = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.CloseButton = new System.Windows.Forms.Label();
+            this.title = new System.Windows.Forms.Label();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.downloadButton = new System.Windows.Forms.Label();
+            this.MinimizeButton = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
-            // 
-            // downloadButton
-            // 
-            this.downloadButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.downloadButton.Location = new System.Drawing.Point(344, 523);
-            this.downloadButton.Name = "downloadButton";
-            this.downloadButton.Size = new System.Drawing.Size(243, 66);
-            this.downloadButton.TabIndex = 0;
-            this.downloadButton.Text = "Download";
-            this.downloadButton.UseMnemonic = false;
-            this.downloadButton.UseVisualStyleBackColor = true;
-            this.downloadButton.Click += new System.EventHandler(this.DownloadButton_Click);
             // 
             // routeText
             // 
-            this.routeText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.routeText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.routeText.Location = new System.Drawing.Point(801, 31);
             this.routeText.Name = "routeText";
             this.routeText.Size = new System.Drawing.Size(238, 77);
@@ -86,8 +80,8 @@ namespace Windows_Store_Downloader
             // 
             // typeLinkText
             // 
-            this.typeLinkText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.typeLinkText.Location = new System.Drawing.Point(19, 27);
+            this.typeLinkText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.typeLinkText.Location = new System.Drawing.Point(19, 28);
             this.typeLinkText.Name = "typeLinkText";
             this.typeLinkText.Size = new System.Drawing.Size(294, 80);
             this.typeLinkText.TabIndex = 3;
@@ -117,12 +111,13 @@ namespace Windows_Store_Downloader
             this.attributeText.Name = "attributeText";
             this.attributeText.Size = new System.Drawing.Size(969, 29);
             this.attributeText.TabIndex = 5;
+            this.attributeText.Text = "Input here...";
             this.attributeText.Enter += new System.EventHandler(this.AttributeInputReady);
             this.attributeText.Leave += new System.EventHandler(this.AttributeInputDeselect);
             // 
             // langPackText
             // 
-            this.langPackText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.langPackText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.langPackText.Location = new System.Drawing.Point(302, 31);
             this.langPackText.Name = "langPackText";
             this.langPackText.Size = new System.Drawing.Size(477, 77);
@@ -156,10 +151,10 @@ namespace Windows_Store_Downloader
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.142858F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(12, 525);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(146, 25);
+            this.label1.Size = new System.Drawing.Size(157, 25);
             this.label1.TabIndex = 9;
             this.label1.Text = "Language/语言";
             // 
@@ -173,7 +168,8 @@ namespace Windows_Store_Downloader
             this.groupBox1.Controls.Add(this.typeLinkText);
             this.groupBox1.Controls.Add(this.routeBox);
             this.groupBox1.Controls.Add(this.routeText);
-            this.groupBox1.Location = new System.Drawing.Point(17, 14);
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.142858F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Location = new System.Drawing.Point(12, 68);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(1062, 307);
             this.groupBox1.TabIndex = 10;
@@ -185,45 +181,133 @@ namespace Windows_Store_Downloader
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.BackgroundImage = global::Windows_Store_Downloader.Properties.Resources.store;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox1.Location = new System.Drawing.Point(790, 396);
+            this.pictureBox1.Location = new System.Drawing.Point(824, 437);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(289, 193);
+            this.pictureBox1.Size = new System.Drawing.Size(273, 176);
             this.pictureBox1.TabIndex = 8;
             this.pictureBox1.TabStop = false;
             // 
             // progressText
             // 
             this.progressText.BackColor = System.Drawing.Color.Transparent;
-            this.progressText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.progressText.Location = new System.Drawing.Point(12, 324);
+            this.progressText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.progressText.Location = new System.Drawing.Point(11, 378);
             this.progressText.Name = "progressText";
-            this.progressText.Size = new System.Drawing.Size(128, 74);
+            this.progressText.Size = new System.Drawing.Size(158, 74);
             this.progressText.TabIndex = 12;
             this.progressText.Text = "Query Progress";
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(146, 342);
+            this.progressBar1.ForeColor = System.Drawing.Color.DarkGreen;
+            this.progressBar1.Location = new System.Drawing.Point(164, 381);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(910, 38);
             this.progressBar1.Step = 1;
             this.progressBar1.TabIndex = 13;
             // 
+            // CloseButton
+            // 
+            this.CloseButton.BackColor = System.Drawing.Color.Transparent;
+            this.CloseButton.Font = new System.Drawing.Font("Webdings", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
+            this.CloseButton.ForeColor = System.Drawing.Color.Ivory;
+            this.CloseButton.Location = new System.Drawing.Point(1032, 9);
+            this.CloseButton.Name = "CloseButton";
+            this.CloseButton.Size = new System.Drawing.Size(65, 44);
+            this.CloseButton.TabIndex = 15;
+            this.CloseButton.Text = "r";
+            this.CloseButton.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
+            this.CloseButton.MouseEnter += new System.EventHandler(this.CloseButton_MouseHover);
+            this.CloseButton.MouseLeave += new System.EventHandler(this.CloseButton_MouseLeave);
+            // 
+            // title
+            // 
+            this.title.AutoSize = true;
+            this.title.BackColor = System.Drawing.Color.Transparent;
+            this.title.Font = new System.Drawing.Font("Consolas", 10.71429F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.title.Location = new System.Drawing.Point(48, 15);
+            this.title.Name = "title";
+            this.title.Size = new System.Drawing.Size(378, 31);
+            this.title.TabIndex = 16;
+            this.title.Text = "Microsoft Store Downloader";
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox2.BackgroundImage = global::Windows_Store_Downloader.Properties.Resources.icon;
+            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox2.Location = new System.Drawing.Point(6, 10);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(36, 36);
+            this.pictureBox2.TabIndex = 17;
+            this.pictureBox2.TabStop = false;
+            // 
+            // label2
+            // 
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Microsoft YaHei UI", 11.14286F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label2.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label2.Location = new System.Drawing.Point(-12, -14);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(1148, 79);
+            this.label2.TabIndex = 18;
+            this.label2.Text = "\r\n_______________________________________________________________________________" +
+    "__________________";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.label2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.label2_MouseDown);
+            // 
+            // downloadButton
+            // 
+            this.downloadButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(81)))), ((int)(((byte)(181)))));
+            this.downloadButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.downloadButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.downloadButton.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.downloadButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.downloadButton.Location = new System.Drawing.Point(381, 485);
+            this.downloadButton.Name = "downloadButton";
+            this.downloadButton.Size = new System.Drawing.Size(343, 98);
+            this.downloadButton.TabIndex = 19;
+            this.downloadButton.Text = "Download";
+            this.downloadButton.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.downloadButton.MouseEnter += new System.EventHandler(this.downloadButton_MouseEnter);
+            this.downloadButton.MouseLeave += new System.EventHandler(this.downloadButton_MouseLeave);
+            // 
+            // MinimizeButton
+            // 
+            this.MinimizeButton.BackColor = System.Drawing.Color.Transparent;
+            this.MinimizeButton.Font = new System.Drawing.Font("Webdings", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
+            this.MinimizeButton.ForeColor = System.Drawing.Color.Ivory;
+            this.MinimizeButton.Location = new System.Drawing.Point(973, 9);
+            this.MinimizeButton.Name = "MinimizeButton";
+            this.MinimizeButton.Size = new System.Drawing.Size(65, 44);
+            this.MinimizeButton.TabIndex = 20;
+            this.MinimizeButton.Text = "0";
+            this.MinimizeButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.MinimizeButton.MouseEnter += new System.EventHandler(this.label3_MouseEnter);
+            this.MinimizeButton.MouseLeave += new System.EventHandler(this.label3_MouseLeave);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(241)))), ((int)(((byte)(240)))));
             this.ClientSize = new System.Drawing.Size(1109, 625);
+            this.Controls.Add(this.MinimizeButton);
+            this.Controls.Add(this.downloadButton);
+            this.Controls.Add(this.pictureBox2);
+            this.Controls.Add(this.title);
+            this.Controls.Add(this.CloseButton);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.progressText);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.langBox);
-            this.Controls.Add(this.downloadButton);
+            this.Controls.Add(this.label2);
             this.Cursor = System.Windows.Forms.Cursors.Default;
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
@@ -235,14 +319,13 @@ namespace Windows_Store_Downloader
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Button downloadButton;
         private System.Windows.Forms.Label routeText;
         private System.Windows.Forms.Label typeLinkText;
         private System.Windows.Forms.Label langPackText;
@@ -256,6 +339,12 @@ namespace Windows_Store_Downloader
         private System.Windows.Forms.Label progressText;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.Label CloseButton;
+        private System.Windows.Forms.Label title;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Label label2;
+        public System.Windows.Forms.Label downloadButton;
+        private System.Windows.Forms.Label MinimizeButton;
     }
 }
 

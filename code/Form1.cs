@@ -16,7 +16,7 @@ namespace Windows_Store_Downloader
         public Form1()
         {
             InitializeComponent();
-            
+           
         }
         
         private bool textBoxHasText = false;
@@ -152,8 +152,7 @@ namespace Windows_Store_Downloader
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
-
+            SetWindowRegion();
             RefreshForm();
             WriteToTemp.ReadFrom();
             if (System.Threading.Thread.CurrentThread.CurrentCulture.Name == "zh-CN") {
@@ -163,10 +162,22 @@ namespace Windows_Store_Downloader
                 English_Lang();
                 langBox.SelectedIndex = 0;
             }
+            if (IsWin7())
+            {
+                CloseButton.ForeColor = Color.DodgerBlue;
+                User32.AnimateWindow(this.Handle, 200, User32.AW_BLEND | User32.AW_ACTIVE | User32.AW_VER_NEGATIVE);
+                RefreshForm();
+                this.Opacity = 0.90;
+            }// Win7淡入淡出
+            else
+            {
+                this.TransparencyKey = Color.FromArgb(0xf1f1f0);//R不等于B
+                RefreshForm();
+                Acrylic.setBlur(this.Handle, 0x30f2f2f2);//亚克力效果
+            }//WIN10亚克力
+            
 
-            User32.AnimateWindow(this.Handle, 200, User32.AW_BLEND | User32.AW_ACTIVE | User32.AW_VER_NEGATIVE);
-            RefreshForm();
-            this.Opacity = 0.95;
+           
             
 
         }
@@ -187,6 +198,7 @@ namespace Windows_Store_Downloader
             routeText.Text = Language.lang_route;
             downloadButton.Text = Language.lang_downbutton;
             this.Text = Language.lang_title;
+            title.Text = Language.lang_title;
             groupBox1.Text = Language.lang_downbutton;
             attributeText.Text = Language.lang_input;
             progressText.Text = Language.lang_prog;
@@ -209,8 +221,13 @@ namespace Windows_Store_Downloader
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)//淡出
         {
-            this.Opacity = 1;
-            User32.AnimateWindow(this.Handle, 300, User32.AW_BLEND | User32.AW_HIDE);
+
+            if (IsWin7())
+            {
+                this.Opacity = 1;
+                User32.AnimateWindow(this.Handle, 300, User32.AW_BLEND | User32.AW_HIDE);
+            }
+
         }
         private void RefreshForm()//初始化窗口
         {
@@ -238,12 +255,15 @@ namespace Windows_Store_Downloader
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
             //防止画窗口出错
-            if(firstPaint == true)
+            if (firstPaint == true)
             {
                 firstPaint = false;
                 rect = this.ClientRectangle;
             }
-                
+
+            if (IsWin7())
+            {
+
 
                 Graphics g = e.Graphics;   //实例化Graphics 对象g
                 Color FColor = Color.FromArgb(0xE8, 0xF1, 0xE7); //颜色1
@@ -251,15 +271,109 @@ namespace Windows_Store_Downloader
                 Brush b = new LinearGradientBrush(rect, FColor, TColor, LinearGradientMode.BackwardDiagonal);  //实例化刷子，第一个参数指示上色区域，第二个和第三个参数分别渐变颜色的开始和结束，第四个参数表示颜色的方向。
                 g.FillRectangle(b, this.ClientRectangle);  //进行上色 
 
+            } //WIN7渐变背景
 
+
+        }
+        
+
+        private bool forceWin7 = false;//强制win7透明
+        private bool IsWin7()
+        {
+            if (forceWin7)
+            {
+                return true;
+            }
             
-
+            if (Environment.OSVersion.Version.Major <= 6 && Environment.OSVersion.Version.Minor < 2)
+            {
+                return true;
+            } else
+            {
+                return false;
+            }
+            
         }
 
 
+        private void CloseButton_MouseLeave(object sender, EventArgs e)
+        {
+                CloseButton.BackColor = Color.FromArgb(0, 0, 0, 0);
+        }
 
+        private void CloseButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
 
+        private void CloseButton_MouseHover(object sender, EventArgs e)
+        {
+            CloseButton.BackColor = Color.FromArgb(255, 228, 5, 0);
+        }
+        public void SetWindowRegion()
+        {
+            GraphicsPath FormPath1, FormPath2;
+            
+            FormPath1 = new GraphicsPath();
+            FormPath2 = new GraphicsPath();
+            Rectangle rect1 = new Rectangle(0, 0, this.Width, this.Height);
+            FormPath1 = GetRoundedRectPath(rect1, 50);
+            Rectangle rect2 = new Rectangle(0, 0, downloadButton.Width, downloadButton.Height);
+            FormPath2 = GetRoundedRectPath(rect2, 30);
+            this.Region = new Region(FormPath1);
+            downloadButton.Region = new Region(FormPath2);
 
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="rect">窗体大小</param>
+        /// <param name="radius">圆角大小</param>
+        /// <returns></returns>
+        private GraphicsPath GetRoundedRectPath(Rectangle rect, int radius)
+        {
+            int diameter =radius;
+            Rectangle arcRect = new Rectangle(rect.Location, new Size(diameter, diameter));
+            GraphicsPath path = new GraphicsPath();
+
+            path.AddArc(arcRect, 180, 90);//左上角
+
+            arcRect.X = rect.Right - diameter;//右上角
+            path.AddArc(arcRect, 270, 90);
+
+            arcRect.Y = rect.Bottom - diameter;// 右下角
+            path.AddArc(arcRect, 0, 90);
+
+            arcRect.X = rect.Left;// 左下角
+            path.AddArc(arcRect, 90, 90);
+            path.CloseFigure();
+            return path;
+        }
+
+        private void label2_MouseDown(object sender, MouseEventArgs e)
+        {
+            WinUtils.FormUtils.DragWindow(this.Handle);
+        }//拖拽窗口
+
+        private void downloadButton_MouseEnter(object sender, EventArgs e)
+        {
+            downloadButton.BackColor = Color.FromArgb(0x4a,0x5f,0xbd);
+        }
+
+        private void downloadButton_MouseLeave(object sender, EventArgs e)
+        {
+            downloadButton.BackColor = Color.FromArgb(0x3f,0x51,0xb5);
+        }
+
+        private void label3_MouseEnter(object sender, EventArgs e)
+        {
+            MinimizeButton.BackColor = Color.FromArgb(50, 255, 255, 254);
+        }
+
+        private void label3_MouseLeave(object sender, EventArgs e) { 
+        MinimizeButton.BackColor = Color.FromArgb(0, 0, 0, 0);
+        }
     }
     class User32
     {
@@ -288,5 +402,9 @@ namespace Windows_Store_Downloader
         public const int AW_SLIDE = 0x40000;//使用滑动类型动画效果，默认为滚动动画类型，当使用AW_CENTER标志时，这个标志就被忽略
         public const int AW_BLEND = 0x80000;//使用淡入淡出效果
     }//淡入淡出
-    
+    class Acrylic
+    {
+        [DllImport("acrylic")]
+        public static extern void setBlur(IntPtr hWnd, int gradientColor);
+    }
 }
