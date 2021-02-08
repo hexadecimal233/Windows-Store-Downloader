@@ -181,6 +181,7 @@
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy "$(ProjectDir)\resources\acrylic.dll" "$(TargetDir)\acrylic.dll"</PostBuildEvent>
+    <PostBuildEvent>copy "$(ProjectDir)\resources\acrylic.dll" "$(TargetDir)\acrylic.dll"
+E:\Program\upx.exe "$(TargetDir)\acrylic.dll"</PostBuildEvent>
   </PropertyGroup>
 </Project>
