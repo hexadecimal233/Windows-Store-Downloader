@@ -163,7 +163,7 @@ namespace Windows_Store_Downloader
                 English_Lang();
                 langBox.SelectedIndex = 0;
             }
-            if (IsWin7())
+            if (IsWinLess7())
             {
                 CloseButton.ForeColor = Color.DodgerBlue;
                 User32.AnimateWindow(this.Handle, 200, User32.AW_BLEND | User32.AW_ACTIVE | User32.AW_VER_NEGATIVE);
@@ -174,20 +174,11 @@ namespace Windows_Store_Downloader
             {
                 this.TransparencyKey = Color.FromArgb(0xf1f1f0);//R不等于B
                 RefreshForm();
-                SetBlur1(this.Handle, 0x3FFFFFFF);//亚克力效果
+                Acrylic.SetBlur(this.Handle, 0x3FFFFFFF);//亚克力效果
             }//WIN10亚克力
             
         }
-        private void SetBlur1(IntPtr hWnd,int gradientColor)
-        {
-            if (File.Exists("acrylic.dll") == false)
-            {
-                MessageBox.Show("acrylic.dll not found.Please put the dll to current directory." +
-                    "\n无法找到acrylic.dll。请把它放到当前目录。");
-                Environment.Exit(0);
-            }
-            Acrylic.SetBlur(hWnd, gradientColor);
-        }//容错dll
+
         private void Chinese_Lang()
         {
             Language.Chinese_Lang();
@@ -228,7 +219,7 @@ namespace Windows_Store_Downloader
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)//淡出
         {
 
-            if (IsWin7())
+            if (IsWinLess7())
             {
                 this.Opacity = 1;
                 User32.AnimateWindow(this.Handle, 300, User32.AW_BLEND | User32.AW_HIDE);
@@ -237,6 +228,15 @@ namespace Windows_Store_Downloader
         }
         private void RefreshForm()//初始化窗口
         {
+            if (IsWinLess7())
+            {
+                if (File.Exists("acrylic.dll") == false)
+                {
+                    MessageBox.Show("acrylic.dll not found.Please put the dll to current directory." +
+                        "\n无法找到acrylic.dll。请把它放到当前目录。");
+                    Environment.Exit(0);
+                }
+            }//容错dll
             Bitmap a = Properties.Resources.store;
             a.MakeTransparent(Color.FromArgb(0, 255, 0));//透明图片
             pictureBox1.BackgroundImage = a;
@@ -267,7 +267,7 @@ namespace Windows_Store_Downloader
                 rect = this.ClientRectangle;
             }
 
-            if (IsWin7())
+            if (IsWinLess7())
             {
 
 
@@ -284,7 +284,7 @@ namespace Windows_Store_Downloader
         
 
         private bool forceWin7 = false;//强制win7透明
-        private bool IsWin7()
+        private bool IsWinLess7()
         {
             if (forceWin7)
             {
