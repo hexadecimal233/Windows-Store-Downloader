@@ -8,7 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Management;
-
+using WinUtils;
 
 namespace Windows_Store_Downloader
 {
@@ -81,14 +81,14 @@ namespace Windows_Store_Downloader
         private void DownloadButton_Click(object sender, EventArgs e)
         {
             progressBar1.Value = 0;
-            downloadButton.Enabled = false;//禁止重复点击
+            this.Enabled = false;//禁止重复点击
             Form2.complete = false;
             HasText();
             if (typeBox.SelectedIndex == -1 || routeBox.SelectedIndex == -1 || textBoxHasText == false)
             {
                 
                 MessageBox.Show(Language.lang_baddown,Language.lang_baddowninfo,MessageBoxButtons.OK,MessageBoxIcon.Error);
-                downloadButton.Enabled = true;
+                this.Enabled = true;
                 return;
             }//参数完整
                 if (langText.Text == "")
@@ -117,7 +117,7 @@ namespace Windows_Store_Downloader
                
             }//伪装进度条
             progressBar1.Value = 100;
-            downloadButton.Enabled = true;
+            this.Enabled = true;
 
 
             
@@ -330,8 +330,10 @@ namespace Windows_Store_Downloader
             }
             
         }
-
+        Thread thread1;
         Thread thread2;
+        Thread thread3;
+        Thread thread4;
         private void CloseButton_MouseLeave(object sender, EventArgs e)
         {
             thread2 = new Thread(GoIntoB);
@@ -343,12 +345,13 @@ namespace Windows_Store_Downloader
         {
             this.Close();
         }
-        Thread thread1;
+        
         private void CloseButton_MouseHover(object sender, EventArgs e)
         {
             thread1 = new Thread(GoIntoA);
             thread1.IsBackground = true;
-            thread1.Start();
+            try { thread1.Start(); } catch { }
+            
             
         }
         private void GoIntoA()
@@ -369,6 +372,25 @@ namespace Windows_Store_Downloader
                 this.CloseButton.BackColor = Color.FromArgb(i, i, 0, 0);
             }
             this.CloseButton.BackColor = Color.FromArgb(0, 0, 0, 0);
+        }
+        private void GoIntoC()
+        {
+            for (int i = 0; i < 231; i += 3)
+            {
+                Thread.Sleep(1);
+                this.MinimizeButton.BackColor = Color.FromArgb(i, i+3, i+2, i);
+            }
+
+        }
+        private void GoIntoD()
+        {
+            thread3.Abort();
+            for (int i = this.MinimizeButton.BackColor.B; i > 0; i -= 3)
+            {
+                Thread.Sleep(1);
+                this.MinimizeButton.BackColor = Color.FromArgb(i, i + 3, i + 2, i);
+            }
+            this.MinimizeButton.BackColor = Color.FromArgb(0, 0, 0, 0);
         }
 
         public void SetWindowRegion()
@@ -412,9 +434,18 @@ namespace Windows_Store_Downloader
             return path;
         }
 
+
+
         private void label2_MouseDown(object sender, MouseEventArgs e)
         {
-            WinUtils.FormUtils.DragWindow(this.Handle);
+            if (e.Button == MouseButtons.Right)
+            {
+                
+            } else
+            {
+                FormUtils.DragWindow(this.Handle);
+            }
+            
         }//拖拽窗口
 
         private void downloadButton_MouseEnter(object sender, EventArgs e)
@@ -429,11 +460,17 @@ namespace Windows_Store_Downloader
 
         private void label3_MouseEnter(object sender, EventArgs e)
         {
-            MinimizeButton.BackColor = Color.FromArgb(50, 233, 232, 231);
+            thread3 = new Thread(GoIntoC);
+            thread3.IsBackground = true;
+            try { thread3.Start(); } catch { }
+            
         }
 
-        private void label3_MouseLeave(object sender, EventArgs e) { 
-        MinimizeButton.BackColor = Color.FromArgb(0, 0, 0, 0);
+        private void label3_MouseLeave(object sender, EventArgs e) {
+            thread4 = new Thread(GoIntoD);
+            thread4.IsBackground = true;
+            thread4.Start();
+            
         }
 
         private void MinimizeButton_Click(object sender, EventArgs e)
@@ -441,6 +478,7 @@ namespace Windows_Store_Downloader
 
             this.WindowState = FormWindowState.Minimized;
         }
+
     }
     class User32
     {

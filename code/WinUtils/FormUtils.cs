@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Drawing;
 
 namespace WinUtils
@@ -22,8 +23,8 @@ namespace WinUtils
             IntPtr hmenu = WinAPI.GetSystemMenu(hwnd, false);
             IntPtr cmd = WinAPI.TrackPopupMenuEx(hmenu, Constants.TPM_LEFTBUTTON | Constants.TPM_RETURNCMD, (uint)defPnt.X, (uint)defPnt.Y, hwnd, IntPtr.Zero);
 
-
             if (cmd != IntPtr.Zero)
+                
                 WinAPI.PostMessage(hwnd, Constants.WM_SYSCOMMAND, cmd, IntPtr.Zero);
 
         }
