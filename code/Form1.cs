@@ -7,12 +7,14 @@ using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Management;
+
 
 namespace Windows_Store_Downloader
 {
     public partial class Form1 : Form
     {
-
+        public static string OSVersion = get_OSVersion();
 
         public Form1()
         {
@@ -165,7 +167,7 @@ namespace Windows_Store_Downloader
                 langBox.SelectedIndex = 0;
             }
             
-            if (IsWinLess7())
+            if (IsWinLess10())
             {
                 CloseButton.ForeColor = Color.DodgerBlue;
                 User32.AnimateWindow(this.Handle, 200, User32.AW_BLEND | User32.AW_ACTIVE | User32.AW_VER_NEGATIVE);
@@ -221,7 +223,7 @@ namespace Windows_Store_Downloader
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)//淡出
         {
 
-            if (IsWinLess7())
+            if (IsWinLess10())
             {
                 this.Opacity = 1;
                 User32.AnimateWindow(this.Handle, 300, User32.AW_BLEND | User32.AW_HIDE);
@@ -230,7 +232,7 @@ namespace Windows_Store_Downloader
         }
         private void RefreshForm()//初始化窗口
         {
-            if (!IsWinLess7())
+            if (!IsWinLess10())
             {
                 if (File.Exists("acrylic.dll") == false)
                 {
@@ -269,7 +271,7 @@ namespace Windows_Store_Downloader
                 rect = this.ClientRectangle;
             }
 
-            if (IsWinLess7())
+            if (IsWinLess10())
             {
 
 
@@ -286,14 +288,38 @@ namespace Windows_Store_Downloader
         
 
         private bool forceWin7 = false;//强制win7透明
-        private bool IsWinLess7()
+        public static string get_OSVersion()
+        {
+            try
+            {
+             
+                ManagementObjectSearcher mos = new ManagementObjectSearcher("Select * From Win32_OperatingSystem");
+                string version = null;
+                foreach (ManagementObject mo in mos.Get())
+                {
+                    version = mo["Version"].ToString().Trim();
+                    break;
+                }
+                    if (null == version)
+                    return string.Empty;
+
+                return version;
+            }
+            catch (Exception)
+            {
+                return string.Empty;
+            }
+        }
+        private bool IsWinLess10()
         {
             if (forceWin7)
             {
                 return true;
             }
+
             
-            if (Environment.OSVersion.Version.Major <= 6 && Environment.OSVersion.Version.Minor < 2)
+            if ((Environment.OSVersion.Version.Major <= 6 && Environment.OSVersion.Version.Minor < 2 ) ||
+                OSVersion.IndexOf("10.0.") == -1)
             {
                 return true;
             } else
