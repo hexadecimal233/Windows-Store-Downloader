@@ -14,6 +14,7 @@ namespace Windows_Store_Downloader
 {
     public partial class Form1 : Form
     {
+
         public static string OSVersion = get_OSVersion();
 
         public Form1()
@@ -402,7 +403,7 @@ namespace Windows_Store_Downloader
 
         private void label3_MouseEnter(object sender, EventArgs e)
         {
-            MinimizeButton.BackColor = Color.FromArgb(50, 255, 255, 254);
+            MinimizeButton.BackColor = Color.FromArgb(50, 233, 232, 231);
         }
 
         private void label3_MouseLeave(object sender, EventArgs e) { 
@@ -412,6 +413,7 @@ namespace Windows_Store_Downloader
         private void MinimizeButton_Click(object sender, EventArgs e)
         {
 
+            this.WindowState = FormWindowState.Minimized;
         }
     }
     class User32

@@ -4,6 +4,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Windows Store Downloader", "Windows Store Downloader.csproj", "{B41BB8C5-767D-46E3-99D1-D6B7ECC144A6}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A448B8A7-E8A6-4E3F-BF2F-9C4CA904BB9E} = {A448B8A7-E8A6-4E3F-BF2F-9C4CA904BB9E}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "acrylic", "acrylic\acrylic.vcxproj", "{A448B8A7-E8A6-4E3F-BF2F-9C4CA904BB9E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +32,16 @@ Global
 		{B41BB8C5-767D-46E3-99D1-D6B7ECC144A6}.Release|x64.Build.0 = Release|x64
 		{B41BB8C5-767D-46E3-99D1-D6B7ECC144A6}.Release|x86.ActiveCfg = Release|Any CPU
 		{B41BB8C5-767D-46E3-99D1-D6B7ECC144A6}.Release|x86.Build.0 = Release|Any CPU
+		{A448B8A7-E8A6-4E3F-BF2F-9C4CA904BB9E}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{A448B8A7-E8A6-4E3F-BF2F-9C4CA904BB9E}.Debug|x64.ActiveCfg = Debug|x64
+		{A448B8A7-E8A6-4E3F-BF2F-9C4CA904BB9E}.Debug|x64.Build.0 = Debug|x64
+		{A448B8A7-E8A6-4E3F-BF2F-9C4CA904BB9E}.Debug|x86.ActiveCfg = Debug|Win32
+		{A448B8A7-E8A6-4E3F-BF2F-9C4CA904BB9E}.Debug|x86.Build.0 = Debug|Win32
+		{A448B8A7-E8A6-4E3F-BF2F-9C4CA904BB9E}.Release|Any CPU.ActiveCfg = Release|Win32
+		{A448B8A7-E8A6-4E3F-BF2F-9C4CA904BB9E}.Release|x64.ActiveCfg = Release|x64
+		{A448B8A7-E8A6-4E3F-BF2F-9C4CA904BB9E}.Release|x64.Build.0 = Release|x64
+		{A448B8A7-E8A6-4E3F-BF2F-9C4CA904BB9E}.Release|x86.ActiveCfg = Release|Win32
+		{A448B8A7-E8A6-4E3F-BF2F-9C4CA904BB9E}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
