@@ -153,6 +153,7 @@ namespace Windows_Store_Downloader
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            
             SetWindowRegion();
             RefreshForm();
             WriteToTemp.ReadFrom();
@@ -163,6 +164,7 @@ namespace Windows_Store_Downloader
                 English_Lang();
                 langBox.SelectedIndex = 0;
             }
+            
             if (IsWinLess7())
             {
                 CloseButton.ForeColor = Color.DodgerBlue;
@@ -228,7 +230,7 @@ namespace Windows_Store_Downloader
         }
         private void RefreshForm()//初始化窗口
         {
-            if (IsWinLess7())
+            if (!IsWinLess7())
             {
                 if (File.Exists("acrylic.dll") == false)
                 {
