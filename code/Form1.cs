@@ -165,9 +165,19 @@ namespace Windows_Store_Downloader
                 Chinese_Lang();
             }
         }
+        private void Better()
+        {
+            this.DoubleBuffered = true;//设置本窗体
+            SetStyle(ControlStyles.UserPaint, true);
+            SetStyle(ControlStyles.AllPaintingInWmPaint, true); // 禁止擦除背景.
+            SetStyle(ControlStyles.DoubleBuffer, true); // 双缓冲
+                                                        //SetStyle(ControlStyles.DoubleBuffer | ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
 
+            //UpdateStyles();
+        }
         private void Form1_Load(object sender, EventArgs e)
         {
+            Better();
             if (File.Exists(WriteToTemp.tmpPath + "\\..\\forcewin7") )
             {
                 forceWin7 = true;
