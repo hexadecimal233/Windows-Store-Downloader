@@ -15,6 +15,17 @@ namespace Windows_Store_Downloader
     public partial class Form1 : Form
     {
 
+        protected override void WndProc(ref Message m)
+
+        {
+            if (m.Msg == 0x0014) // 禁掉清除背景消息
+
+                return;
+
+            base.WndProc(ref m);
+
+        }
+
         public static string OSVersion = get_OSVersion();
 
         public Form1()
