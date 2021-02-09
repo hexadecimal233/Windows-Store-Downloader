@@ -157,7 +157,11 @@ namespace Windows_Store_Downloader
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+            if (File.Exists(WriteToTemp.tmpPath + "\\..\\forcewin7") )
+            {
+                forceWin7 = true;
+            }
+           
             SetWindowRegion();
             RefreshForm();
             WriteToTemp.ReadFrom();
@@ -205,6 +209,7 @@ namespace Windows_Store_Downloader
             groupBox1.Text = Language.lang_downbutton;
             attributeText.Text = Language.lang_input;
             progressText.Text = Language.lang_prog;
+            button1.Text = Language.lang_forcewin7;
         }//设置语言文本
 
         private void RefreshText(object sender, EventArgs e)//刷新文本
@@ -234,6 +239,11 @@ namespace Windows_Store_Downloader
         }
         private void RefreshForm()//初始化窗口
         {
+            if (forceWin7)
+            {
+                button1.Visible = false;
+
+            }
             if (!IsWinLess10())
             {
                 if (File.Exists("acrylic.dll") == false)
@@ -479,6 +489,14 @@ namespace Windows_Store_Downloader
             this.WindowState = FormWindowState.Minimized;
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                File.Create(WriteToTemp.tmpPath + "\\..\\forcewin7");
+            } catch { }
+            
+        }
     }
     class User32
     {

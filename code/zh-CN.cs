@@ -23,5 +23,7 @@
         public string lang_errhtm = "error-cn.html";
         public string lang_neterr = "网络错误.";
         public string lang_tablehtm = "table-cn.html";
+        public string lang_forcewin7 = "关闭模糊效果";
+        public string lang_restart = "重新启动程序以生效。";
     }
 }

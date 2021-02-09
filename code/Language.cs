@@ -25,6 +25,8 @@ namespace Windows_Store_Downloader
         public static string lang_neterr;
         public static string lang_tablehtm;
         public static string langUsing;
+        public static string lang_forcewin7;
+        public static string lang_restart;
         public static void Chinese_Lang()
         {
             lang_attributes[0] = zh_CN.lang_attributes[0];
@@ -46,6 +48,8 @@ namespace Windows_Store_Downloader
             lang_neterr = zh_CN.lang_neterr;
             lang_tablehtm = zh_CN.lang_tablehtm;
             langUsing = "zh-CN";
+            lang_forcewin7 = zh_CN.lang_forcewin7;
+            lang_restart = zh_CN.lang_restart;
         }
         public static void English_Lang()
         {
@@ -65,9 +69,11 @@ namespace Windows_Store_Downloader
             lang_prog = global.lang_prog;
             lang_interr = global.lang_interr;
             lang_errhtm = global.lang_errhtm;
-            lang_neterr = global.lang_neterr;
+            lang_neterr = global.lang_neterr; 
             lang_tablehtm = global.lang_tablehtm;
             langUsing = "global";
+            lang_forcewin7 = global.lang_forcewin7;
+            lang_restart = global.lang_restart;
         }
         public static void InternalErrMsgBox(System.Exception ex)
         {

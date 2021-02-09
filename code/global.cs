@@ -23,5 +23,7 @@
         public string lang_errhtm = "error.html";
         public string lang_neterr = "Network error.";
         public string lang_tablehtm = "table.html";
+        public string lang_forcewin7 = "Disable Blur effect";
+        public string lang_restart = "Restart the program to take efect.";
     }
 }
