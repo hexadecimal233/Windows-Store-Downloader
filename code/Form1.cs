@@ -88,7 +88,7 @@ namespace Windows_Store_Downloader
             return Language.lang_attributes[typeBox.SelectedIndex];
         }//获取当前项的本地化文本
 
-
+        
         private void DownloadButton_Click(object sender, EventArgs e)
         {
             progressBar1.Value = 0;
@@ -113,47 +113,49 @@ namespace Windows_Store_Downloader
             Thread post = new Thread(Form2.Browse);
             post.IsBackground = true;
             post.SetApartmentState(ApartmentState.STA);
-                post.Start();  //POST线程
+            post.Start();  //POST线程
 
-
+           
             while (Form2.complete == false)
             {
-                if (progressBar1.Value <= 99)
+                if (this.progressBar1.Value <= 99)
                 {
                     Random random = new Random(new Guid().GetHashCode());
                     Thread.Sleep(random.Next(67, 101));
-                    progressBar1.PerformStep();
+                    this.progressBar1.PerformStep();
 
                 }
-               
+
             }//伪装进度条
-            progressBar1.Value = 100;
+            this.progressBar1.Value = 100;
             this.Enabled = true;
 
 
-            
+
             if (Form2.returnid == -1)
-                {
-                 MessageBox.Show(Language.lang_interr, Language.lang_interr, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                 return;
-                }//意外
-                if (Form2.returnid == 2) {
+            {
+                MessageBox.Show(Language.lang_interr, Language.lang_interr, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }//意外
+            if (Form2.returnid == 2)
+            {
 
                 Form2.ShowDialog();
-                }//空响应
-                if (Form2.returnid == 1)//浏览
-                {
+            }//空响应
+            if (Form2.returnid == 1)//浏览
+            {
                 try
-                    {
-                        new Form2().ShowDialog();
-                    } catch (Exception ex)
-                    {
-                        Language.InternalErrMsgBox(ex);
-                    }
-                }//OK
+                {
+                    new Form2().ShowDialog();
+                }
+                catch (Exception ex)
+                {
+                    Language.InternalErrMsgBox(ex);
+                }
+            }//OK
 
-            
-            
+
+
         }//下载&浏览
 
         private void ChangeLanguage(object sender, EventArgs e)//更改语言
