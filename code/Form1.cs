@@ -494,7 +494,7 @@ namespace Windows_Store_Downloader
             if (MessageBox.Show(Language.lang_forcewin7, Language.lang_title, MessageBoxButtons.OKCancel,
                 MessageBoxIcon.Question) != DialogResult.OK)
                 return;
-            
+            button1.Enabled = false;
             try
             {
                 File.Create(WriteToTemp.tmpPath + "\\..\\forcewin7");
