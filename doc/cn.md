@@ -3,6 +3,7 @@
 
 ## 微软商店下载器
 
+![stars](https://img.shields.io/github/stars/ThebestkillerTBK/Windows-Store-Downloader.svg?label=GitHub)
 ![License](https://img.shields.io/badge/License-LGPL-green.svg)
 ### 介绍
 一个让你能无限制下载微软商店的应用。
