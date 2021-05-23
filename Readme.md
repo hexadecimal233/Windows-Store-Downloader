@@ -29,7 +29,3 @@ Example:
 [![Stargazers repo roster for @ThebestkillerTBK/Windows-Store-Downloader](https://reporoster.com/stars/ThebestkillerTBK/Windows-Store-Downloader)](https://github.com/ThebestkillerTBK/Windows-Store-Downloader/stargazers)
 
 [![Forkers repo roster for @ThebestkillerTBK/Windows-Store-Downloader](https://reporoster.com/forks/ThebestkillerTBK/Windows-Store-Downloader)](https://github.com/ThebestkillerTBK/Windows-Store-Downloader/network/members)
-
-### Video
-* Bilibili:https://www.bilibili.com/video/(未发布)
-* Youtube:https://www.youtube.com/watch?v=(Not_Uploaded)
