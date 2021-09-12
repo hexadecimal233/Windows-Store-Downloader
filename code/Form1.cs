@@ -8,23 +8,12 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Management;
-using WinUtils;
 
 namespace Windows_Store_Downloader
 {
     public partial class Form1 : Form
     {
 
-        protected override void WndProc(ref Message m)
-
-        {
-            if (m.Msg == 0x0014) // 禁掉清除背景消息
-
-                return;
-
-            base.WndProc(ref m);
-
-        }
 
         public static string OSVersion = get_OSVersion();
 
@@ -467,20 +456,24 @@ namespace Windows_Store_Downloader
             return path;
         }
 
+        public static void DragWindow(IntPtr hwnd)
+        {
+            WinAPI.ReleaseCapture();
+            WinAPI.SendMessage(hwnd, Constants.WM_SYSCOMMAND, (IntPtr)(Constants.SC_MOVE + Constants.HTCAPTION), IntPtr.Zero);
+        }
 
-
-        private void label2_MouseDown(object sender, MouseEventArgs e)
+            private void label2_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
             {
                 
             } else
             {
-                FormUtils.DragWindow(this.Handle);
+                DragWindow(this.Handle);
             }
             
         }//拖拽窗口
-
+        
         private void downloadButton_MouseEnter(object sender, EventArgs e)
         {
             downloadButton.BackColor = Color.FromArgb(0x4a,0x5f,0xbd);

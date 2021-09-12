@@ -118,18 +118,7 @@
     <Compile Include="code\Language.cs" />
     <Compile Include="code\Post.cs" />
     <Compile Include="code\Program.cs" />
-    <Compile Include="code\WinUtils\Dialogs\InputBox.cs" />
-    <Compile Include="code\WinUtils\Dialogs\PickIconDialog.cs" />
-    <Compile Include="code\WinUtils\Dialogs\TaskDialog.cs" />
-    <Compile Include="code\WinUtils\DPI.cs" />
-    <Compile Include="code\WinUtils\FormUtils.cs" />
-    <Compile Include="code\WinUtils\IconManager.cs" />
-    <Compile Include="code\WinUtils\LayeredWindowHelper.cs" />
-    <Compile Include="code\WinUtils\ToolStripNonClientRenderer.cs" />
-    <Compile Include="code\WinUtils\Win10Style.cs" />
-    <Compile Include="code\WinUtils\Win7Style.cs" />
-    <Compile Include="code\WinUtils\WinAPI.cs" />
-    <Compile Include="code\WinUtils\WinVer.cs" />
+    <Compile Include="code\WinAPI.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="code\global.cs" />
     <Compile Include="code\zh-CN.cs" />
@@ -182,6 +171,6 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy "$(ProjectDir)\resources\acrylic.dll" "$(TargetDir)\acrylic.dll"
-E:\Program\upx.exe "$(TargetDir)\acrylic.dll"</PostBuildEvent>
+rem E:\Program\upx.exe "$(TargetDir)\acrylic.dll"</PostBuildEvent>
   </PropertyGroup>
 </Project>
